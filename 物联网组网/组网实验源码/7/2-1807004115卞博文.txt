@@ -1,0 +1,319 @@
+
+[Message : Hello, welcome to use LIMP Telnet Proxy.Prepare connecting to the dev
+ice, please wait a moment....]
+
+[Message : Connection is established.Device is S2126G-2]
+
+Switch(config)#in vl 1
+Switch(config-if-VLAN 1)#ip address 172.16.11.100 255.255.255.0
+Switch(config-if-VLAN 1)#no shutdown
+Switch(config-if-VLAN 1)#exit
+Switch(config)#ip default-gateway 172.16.11.1
+Switch(config)#exit
+Switch#*Nov 27 09:16:23: %SYS-5-CONFIG_I: Configured from console by console
+
+Switch#show run
+
+Building configuration...
+Current configuration : 1163 bytes
+
+!
+version RGOS 10.2(5p1), Release(122585)(Wed Aug 24 11:37:41 CST 2011 -ngcf67)
+!
+!
+!
+vlan 1
+!
+!
+no service password-encryption
+!
+!
+ip default-gateway 172.16.11.1
+!
+!
+!
+!
+!
+!
+hostname Switch
+interface FastEthernet 0/1
+!
+interface FastEthernet 0/2
+!
+interface FastEthernet 0/3
+!
+interface FastEthernet 0/4
+!
+interface FastEthernet 0/5
+!
+interface FastEthernet 0/6
+!
+interface FastEthernet 0/7
+!
+interface FastEthernet 0/8
+!
+interface FastEthernet 0/9
+!
+interface FastEthernet 0/10
+!
+interface FastEthernet 0/11
+!
+interface FastEthernet 0/12
+!
+interface FastEthernet 0/13
+!
+interface FastEthernet 0/14
+!
+interface FastEthernet 0/15
+!
+interface FastEthernet 0/16
+!
+interface FastEthernet 0/17
+!
+interface FastEthernet 0/18
+!
+interface FastEthernet 0/19
+!
+interface FastEthernet 0/20
+!
+interface FastEthernet 0/21
+!
+interface FastEthernet 0/22
+!
+interface FastEthernet 0/23
+!
+interface FastEthernet 0/24
+!
+interface GigabitEthernet 0/25
+!
+interface GigabitEthernet 0/26
+!
+interface VLAN 1
+ ip address 172.16.11.100 255.255.255.0
+ no shutdown
+!
+!
+line con 0
+line vty 0 4
+ login
+!
+!
+end
+
+Switch#ping 172.16.10.100
+Sending 5, 100-byte ICMP Echoes to 172.16.10.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/10 ms
+Switch#ping 172.16.20.100
+Sending 5, 100-byte ICMP Echoes to 172.16.20.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/30/30 ms
+Switch#ping 172.16.20.1
+Sending 5, 100-byte ICMP Echoes to 172.16.20.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/32/40 ms
+Switch#ping 172.16.10.1
+Sending 5, 100-byte ICMP Echoes to 172.16.10.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/10 ms
+Switch#ping 172.16.11.1
+Sending 5, 100-byte ICMP Echoes to 172.16.11.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/10 ms
+Switch#ping 172.16.21.100
+Sending 5, 100-byte ICMP Echoes to 172.16.21.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/34/40 ms
+
+Switch#ping 172.16.10.1
+Sending 5, 100-byte ICMP Echoes to 172.16.10.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+Switch#ping 172.16.20.1
+Sending 5, 100-byte ICMP Echoes to 172.16.20.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+Switch#ping 172.16.10.10
+Sending 5, 100-byte ICMP Echoes to 172.16.10.10, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+Switch#ping 172.16.20.10
+Sending 5, 100-byte ICMP Echoes to 172.16.20.10, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+Switch#ping 172.16.21.100
+Sending 5, 100-byte ICMP Echoes to 172.16.21.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/32/40 ms
+
+//สตั้ศý
+Switch>en
+Switch#con ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S2126
+S2126(config)#vlan 10
+S2126(config-vlan)#exit
+S2126(config)#vlan 20
+S2126(config-vlan)#exit
+S2126(config)#vlan 30
+S2126(config-vlan)#exit
+S2126(config)#in fa 0/1
+S2126(config-if-FastEthernet 0/1)#switchport mode trunk
+S2126(config-if-FastEthernet 0/1)#exit
+S2126(config)#in range fa0/2,0/5-10
+S2126(config-if-range)#switchport access vlan 10
+S2126(config-if-range)#exit
+S2126(config)#in range fa 0/3,0/11-15
+S2126(config-if-range)#switchport access vlan 20
+S2126(config-if-range)#exit
+S2126(config)#in range fa 0/4,0/16-20
+S2126(config-if-range)#switchport access vlan 30
+S2126(config-if-range)#end
+S2126#*Nov 27 10:40:37: %SYS-5-CONFIG_I: Configured from console by console
+
+S2126#show vlan
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- --------------------------------
+---
+   1 VLAN0001                         STATIC    Fa0/1, Fa0/21, Fa0/22, Fa0/23
+
+                                                Fa0/24, Gi0/25, Gi0/26
+
+  10 VLAN0010                         STATIC    Fa0/1, Fa0/2, Fa0/5, Fa0/6
+
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10
+
+  20 VLAN0020                         STATIC    Fa0/1, Fa0/3, Fa0/11, Fa0/12
+
+                                                Fa0/13, Fa0/14, Fa0/15
+
+  30 VLAN0030                         STATIC    Fa0/1, Fa0/4, Fa0/16, Fa0/17
+
+                                                Fa0/18, Fa0/19, Fa0/20
+
+Switch>en
+Switch#con ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S2126
+S2126(config)#vlan 10
+S2126(config-vlan)#exit
+S2126(config)#vlan 20
+S2126(config-vlan)#exit
+S2126(config)#vlan 30
+S2126(config-vlan)#exit
+S2126(config)#in fa 0/1
+S2126(config-if-FastEthernet 0/1)#switchport mode trunk
+S2126(config-if-FastEthernet 0/1)#exit
+S2126(config)#in range fa0/2,0/5-10
+S2126(config-if-range)#switchport access vlan 10
+S2126(config-if-range)#exit
+S2126(config)#in range fa 0/3,0/11-15
+S2126(config-if-range)#switchport access vlan 20
+S2126(config-if-range)#exit
+S2126(config)#in range fa 0/4,0/16-20
+S2126(config-if-range)#switchport access vlan 30
+S2126(config-if-range)#end
+S2126#*Nov 27 10:40:37: %SYS-5-CONFIG_I: Configured from console by console
+
+S2126#show vlan
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- --------------------------------
+---
+   1 VLAN0001                         STATIC    Fa0/1, Fa0/21, Fa0/22, Fa0/23
+
+                                                Fa0/24, Gi0/25, Gi0/26
+
+  10 VLAN0010                         STATIC    Fa0/1, Fa0/2, Fa0/5, Fa0/6
+
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10
+
+  20 VLAN0020                         STATIC    Fa0/1, Fa0/3, Fa0/11, Fa0/12
+
+                                                Fa0/13, Fa0/14, Fa0/15
+
+  30 VLAN0030                         STATIC    Fa0/1, Fa0/4, Fa0/16, Fa0/17
+
+                                                Fa0/18, Fa0/19, Fa0/20
+
+S2126#con ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2126(config)#ip access-list extended firewall
+S2126(config-ext-nacl)#deny udp any any eq 69
+S2126(config-ext-nacl)#deny tcp any any eq 139
+S2126(config-ext-nacl)#deny udp any any eq 139
+S2126(config-ext-nacl)#deny udp any any eq 135
+S2126(config-ext-nacl)#deny udp any any eq 137
+S2126(config-ext-nacl)#deny udp any any eq 138
+S2126(config-ext-nacl)#deny tcp any any eq 445
+S2126(config-ext-nacl)#deny tcp any any eq 593
+S2126(config-ext-nacl)#deny tcp any any eq 4444
+S2126(config-ext-nacl)#permit ip any any
+S2126(config-ext-nacl)#exit
+S2126(config)#interface range fa 0/2-20
+S2126(config-if-range)#ip access-group firewall in
+S2126(config-if-range)#end
+S2126#*Nov 27 10:48:16: %SYS-5-CONFIG_I: Configured from console by console
+
+S2126#show ip access-group
+ip access-group firewall in
+Applied On interface FastEthernet 0/2.
+ip access-group firewall in
+Applied On interface FastEthernet 0/3.
+ip access-group firewall in
+Applied On interface FastEthernet 0/4.
+ip access-group firewall in
+Applied On interface FastEthernet 0/5.
+ip access-group firewall in
+Applied On interface FastEthernet 0/6.
+ip access-group firewall in
+Applied On interface FastEthernet 0/7.
+ip access-group firewall in
+Applied On interface FastEthernet 0/8.
+ip access-group firewall in
+Applied On interface FastEthernet 0/9.
+ip access-group firewall in
+Applied On interface FastEthernet 0/10.
+ip access-group firewall in
+Applied On interface FastEthernet 0/11.
+ip access-group firewall in
+Applied On interface FastEthernet 0/12.
+ip access-group firewall in
+Applied On interface FastEthernet 0/13.
+ip access-group firewall in
+Applied On interface FastEthernet 0/14.
+ip access-group firewall in
+Applied On interface FastEthernet 0/15.
+ip access-group firewall in
+Applied On interface FastEthernet 0/16.
+ip access-group firewall in
+Applied On interface FastEthernet 0/17.
+ip access-group firewall in
+Applied On interface FastEthernet 0/18.
+ip access-group firewall in
+Applied On interface FastEthernet 0/19.
+ip access-group firewall in
+Applied On interface FastEthernet 0/20.
+S2126#show access-list
+
+ip access-list extended firewall
+ 10 deny udp any any eq tftp
+ 20 deny tcp any any eq 139
+ 30 deny udp any any eq netbios-ss
+ 40 deny udp any any eq 135
+ 50 deny udp any any eq netbios-ns
+ 60 deny udp any any eq netbios-dgm
+ 70 deny tcp any any eq 445
+ 80 deny tcp any any eq 593
+ 90 deny tcp any any eq 4444
+ 100 permit ip any any

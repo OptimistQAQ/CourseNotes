@@ -1,0 +1,50 @@
+Red-Giant#show run
+
+Building configuration...
+Current configuration : 406 bytes
+
+!
+version 8.32(building 53)
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface serial 1/2
+ clock rate 64000
+!
+interface serial 1/3
+ clock rate 64000
+!
+interface FastEthernet 1/0
+ ip address 172.16.10.10 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet 1/1
+ duplex auto
+ speed auto
+!
+interface Null 0
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+

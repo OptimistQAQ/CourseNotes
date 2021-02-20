@@ -1,0 +1,242 @@
+任务一：初始配置
+R1762-1#show ip in
+serial 1/2
+  IP interface state is: UP
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is:
+    172.16.1.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+FastEthernet 1/0
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is:
+    172.16.10.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+FastEthernet 1/1
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is:
+    172.16.11.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+全网通：
+R1762-1#ping 172.16.21.1
+Sending 5, 100-byte ICMP Echoes to 172.16.21.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/38 ms
+R1762-1#ping 172.16.20.1
+Sending 5, 100-byte ICMP Echoes to 172.16.20.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 36/36/36 ms
+R1762-1#ping 172.16.20.100
+Sending 5, 100-byte ICMP Echoes to 172.16.20.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/37 ms
+R1762-1#ping 172.16.21.100
+Sending 5, 100-byte ICMP Echoes to 172.16.21.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/38 ms
+
+
+R1762-1#show access-lists
+Standard IP access list 10 includes 2 items:
+    permit 172.16.21.0, wildcard bits 0.0.0.255
+    permit host 172.16.10.100
+R1762-1#show ip in fa 1/1
+FastEthernet 1/1
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is:
+    172.16.11.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is 10.
+  Inbound access list is not set.
+访问控制后：
+R1762-1#ping 172.16.20.10
+Sending 5, 100-byte ICMP Echoes to 172.16.20.10, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/37 ms
+R1762-1#ping 172.16.10.10
+Sending 5, 100-byte ICMP Echoes to 172.16.10.10, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+R1762-1#ping 172.16.11.100
+Sending 5, 100-byte ICMP Echoes to 172.16.11.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+R1762-1#ping 172.16.21.100
+Sending 5, 100-byte ICMP Echoes to 172.16.21.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+
+任务二：
+serial 1/2
+  IP interface state is: UP
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is:
+    172.17.0.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+FastEthernet 1/0
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is:
+    172.16.10.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+FastEthernet 1/1
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is:
+    172.16.20.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is 10.
+  Inbound access list is not set.
+R1762-1#ping 172.16.10.100
+Sending 5, 100-byte ICMP Echoes to 172.16.10.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/3 ms
+R1762-1#ping 172.16.20.100
+Sending 5, 100-byte ICMP Echoes to 172.16.20.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+R1762-1#show access-lists
+Standard IP access list 10 includes 3 items (total 56 matches):
+    permit 172.16.21.0, wildcard bits 0.0.0.255 (20 matches)
+    permit host 172.16.10.100
+    deny   any (36 matches)
+Extended IP access list 110 includes 1 item:
+    permit icmp 172.16.20.0 0.0.0.255 172.16.10.0 0.0.0.255
+
+任务三：
+S3550#show ip in
+
+Interface            : VL10
+Description          : Vlan 10
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.10.1/24
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.8d06
+
+Interface            : VL20
+Description          : Vlan 20
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.20.1/24
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.8d07
+
+Interface            : VL30
+Description          : Vlan 30
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.30.1/24
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.8d08
+
+S3550#show ip access-lists
+
+Standard IP access list: my_acl
+    permit host 172.16.20.100
+    permit 172.16.30.0 0.0.0.255
+S3550#show ip access-lists
+
+Standard IP access list: my_acl
+    permit host 172.16.20.100
+    permit 172.16.30.0 0.0.0.255
+
+S3550#show ip access-group
+
+Interface  inbound access-list              outbound access-list
+---------- -------------------------------- --------------------------------
+VL10                                        my_acl
+

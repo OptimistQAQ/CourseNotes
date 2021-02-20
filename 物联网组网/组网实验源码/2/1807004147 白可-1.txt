@@ -1,0 +1,71 @@
+Red-Giant(config)#interface fa 1/0
+Red-Giant(config-if)#ip address 172.16.0.1 255.255.255.0
+Red-Giant(config-if)#no shutdown
+Red-Giant(config-if)#en
+Red-Giant#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Red-Giant(config)#ping 172.16.0.2
+% Unknown command.
+
+Red-Giant(config)#en
+Red-Giant#ping 172.16.0.2
+Sending 5, 100-byte ICMP Echoes to 172.16.0.2, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+Red-Giant#ping 172.16.0.2
+Sending 5, 100-byte ICMP Echoes to 172.16.0.2, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+Red-Giant#
+
+Red-Giant#show run
+
+Building configuration...
+Current configuration : 404 bytes
+
+!
+version 8.32(building 53)
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface serial 1/2
+ clock rate 64000
+!
+interface serial 1/3
+ clock rate 64000
+!
+interface FastEthernet 1/0
+ ip address 172.16.0.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet 1/1
+ duplex auto
+ speed auto
+!
+interface Null 0
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end

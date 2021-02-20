@@ -1,0 +1,160 @@
+≈‰÷√
+2-R1762-1(config)#router ospf
+2-R1762-1(config-router)#network 172.16.13.0 0.
+                                               ^
+% Invalid input detected at '^' marker.
+
+2-R1762-1(config-router)#network 172.16.13.0 0.0.0.255 area 0
+2-R1762-1(config-router)#network 172.16.23.0 0.0.0.255 area 0
+2-R1762-1(config-router)#network 172.16.14.0 0.0.0.255 area 0
+2-R1762-1(config-router)#network 172.16.24.0 0.0.0.255 area 0
+2-R1762-1(config-router)#exit
+2-R1762-1(config)#end
+2-R1762-1#ping 172.16.23.1
+Sending 5, 100-byte ICMP Echoes to 172.16.23.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+2-R1762-1#ping 172.16.23.2
+Sending 5, 100-byte ICMP Echoes to 172.16.23.2, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+2-R1762-1#ping 172.16.14.2
+Sending 5, 100-byte ICMP Echoes to 172.16.14.2, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+2-R1762-1#
+SHOW
+2-R1762-1#show ip ospf neighbor
+
+Neighbor ID     Pri State            DeadTime Address         Interface
+--------------- --- ---------------- -------- --------------- -------------
+172.16.34.1     1   Full/DR          00:00:39 172.16.13.2     FastEthernet
+2-R1762-1#show ip ospf database database-summary
+                        OSPF Router with ID (172.16.10.1)
+
+
+Area : 0.0.0.0
+  LSA Type      Count       Delete      Maxage
+  ------------- ----------- ----------- -----------
+  Router        3           0           0
+  Network       2           0           0
+  Summary Net   0           0           0
+  Summary ASBR  0           0           0
+  Type-7 Ext    0           0           0
+  Subtotal      5           0           0
+
+Total :
+  LSA Type      Count       Delete      Maxage
+  ------------- ----------- ----------- -----------
+  Router        3           0           0
+  Network       2           0           0
+  Summary Net   0           0           0
+  Summary ASBR  0           0           0
+  type-5 Ext    0           0           0
+  Type-7 Ext    0           0           0
+  Total         5           0           0
+2-R1762-1#show ip ospf database router
+                        OSPF Router with ID (172.16.10.1)
+
+
+                  Router Link States (Area  0.0.0.0)
+
+
+  LS age             : 177
+  Options            : 0x2
+  LS Type            : Router Links
+  Link State ID      : 172.16.10.1
+  Advertising Router : 172.16.10.1
+  LS Seq Number      : 80000004
+  Checksum           : 0x58F5
+  Length             : 48
+   Number of Links    : 2
+
+      Link connected to     : transit network
+      Link ID               : 172.16.13.2
+      Link Data             : 172.16.13.1
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+      Link connected to     : stub network
+      Link ID               : 172.16.14.0
+      Link Data             : 255.255.255.0
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+
+  LS age             : 200
+  Options            : 0x2
+  LS Type            : Router Links
+  Link State ID      : 172.16.20.1
+  Advertising Router : 172.16.20.1
+  LS Seq Number      : 80000005
+  Checksum           : 0x47D4
+  Length             : 48
+   Number of Links    : 2
+
+      Link connected to     : transit network
+      Link ID               : 172.16.23.1
+      Link Data             : 172.16.23.1
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+      Link connected to     : stub network
+      Link ID               : 172.16.24.0
+      Link Data             : 255.255.255.0
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+
+  LS age             : 174
+  Options            : 0x2
+  LS Type            : Router Links
+  Link State ID      : 172.16.34.1
+  Advertising Router : 172.16.34.1
+  LS Seq Number      : 80000006
+  Checksum           : 0xF259
+  Length             : 60
+   Number of Links    : 3
+
+      Link connected to     : transit network
+      Link ID               : 172.16.13.2
+      Link Data             : 172.16.13.2
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+      Link connected to     : transit network
+      Link ID               : 172.16.23.1
+      Link Data             : 172.16.23.2
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+      Link connected to     : stub network
+      Link ID               : 172.16.34.0
+      Link Data             : 255.255.255.0
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+
+2-R1762-1#
+2-R1762-1#show ip route
+
+Codes:  C - connected, S - static,  R - RIP
+        O - OSPF, IA - OSPF inter area
+        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+        E1 - OSPF external type 1, E2 - OSPF external type 2
+        * - candidate default
+
+Gateway of last resort is no set
+C    172.16.10.0/24 is directly connected, Loopback 0
+C    172.16.10.1/32 is local host.
+C    172.16.13.0/24 is directly connected, FastEthernet 1/0
+C    172.16.13.1/32 is local host.
+C    172.16.14.0/24 is directly connected, FastEthernet 1/1
+C    172.16.14.1/32 is local host.
+O    172.16.23.0/24 [110/2] via 172.16.13.2, 00:03:48, FastEthernet 1/0
+O    172.16.24.0/24 [110/3] via 172.16.13.2, 00:03:48, FastEthernet 1/0
+O    172.16.34.0/24 [110/2] via 172.16.13.2, 00:03:48, FastEthernet 1/0
+2-R1762-1#

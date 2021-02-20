@@ -1,0 +1,129 @@
+Switch#ping 172.16.20.1
+Sending 5, 100-byte ICMP Echoes to 172.16.20.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+
+
+Switch#ping 172.16.10.1
+Sending 5, 100-byte ICMP Echoes to 172.16.10.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+
+
+Switch#ping 172.16.11.100
+Sending 5, 100-byte ICMP Echoes to 172.16.11.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/10 ms
+ 
+
+
+Switch#ping 172.16.20.100
+Sending 5, 100-byte ICMP Echoes to 172.16.20.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/30/30 ms
+
+
+
+Switch#ping 172.16.21.100
+Sending 5, 100-byte ICMP Echoes to 172.16.21.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/34/40 ms
+
+
+Switch#ping 172.16.20.10
+Sending 5, 100-byte ICMP Echoes to 172.16.20.10, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 30/34/40 ms
+
+
+
+Switch#ping 172.16.21.100
+Sending 5, 100-byte ICMP Echoes to 172.16.21.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+
+
+
+Switch#ping 172.16.11.100
+Sending 5, 100-byte ICMP Echoes to 172.16.11.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+
+
+
+Switch#sh vl
+VLAN Name                             Status    Ports     
+---- -------------------------------- --------- -----------------------------------
+   1 VLAN0001                         STATIC    Fa0/1, Fa0/21, Fa0/22, Fa0/23         
+                                                Fa0/24, Gi0/25, Gi0/26                
+  10 VLAN0010                         STATIC    Fa0/1, Fa0/2, Fa0/5, Fa0/6            
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10           
+  20 VLAN0020                         STATIC    Fa0/1, Fa0/3, Fa0/11, Fa0/12          
+                                                Fa0/13, Fa0/14, Fa0/15                
+  30 VLAN0030                         STATIC    Fa0/1, Fa0/4, Fa0/16, Fa0/17          
+                                                Fa0/18, Fa0/19, Fa0/20
+
+
+Switch#sh ip access-group
+ip access-group firewall in
+Applied On interface FastEthernet 0/2.
+ip access-group firewall in
+Applied On interface FastEthernet 0/3.
+ip access-group firewall in
+Applied On interface FastEthernet 0/4.
+ip access-group firewall in
+Applied On interface FastEthernet 0/5.
+ip access-group firewall in
+Applied On interface FastEthernet 0/6.
+ip access-group firewall in
+Applied On interface FastEthernet 0/7.
+ip access-group firewall in
+Applied On interface FastEthernet 0/8.
+ip access-group firewall in
+Applied On interface FastEthernet 0/9.
+ip access-group firewall in
+Applied On interface FastEthernet 0/10.
+ip access-group firewall in
+Applied On interface FastEthernet 0/11.
+ip access-group firewall in
+Applied On interface FastEthernet 0/12.
+ip access-group firewall in
+Applied On interface FastEthernet 0/13.
+ip access-group firewall in
+Applied On interface FastEthernet 0/14.
+ip access-group firewall in
+Applied On interface FastEthernet 0/15.
+ip access-group firewall in
+Applied On interface FastEthernet 0/16.
+ip access-group firewall in
+Applied On interface FastEthernet 0/17.
+ip access-group firewall in
+Applied On interface FastEthernet 0/18.
+ip access-group firewall in
+Applied On interface FastEthernet 0/19.
+ip access-group firewall in
+Applied On interface FastEthernet 0/20.
+
+
+
+
+Switch#sh access-lists
+
+ip access-list extended fi
+ 10 deny udp any any eq tftp 
+ 20 deny tcp any any eq 135 
+ 30 deny udp any any eq 135 
+ 40 deny udp any any eq netbios-ns 
+ 50 deny udp any any eq netbios-dgm 
+ 60 deny tcp any any eq 139 
+ 70 deny udp any any eq netbios-ss 
+ 80 deny tcp any any eq 445 
+ 90 deny tcp any any eq 593 
+ 100 deny tcp any any eq 4444 
+ 110 permit ip any any 

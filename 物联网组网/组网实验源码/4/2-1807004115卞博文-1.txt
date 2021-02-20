@@ -1,0 +1,113 @@
+//路由器
+[Message : Hello, welcome to use LIMP Telnet Proxy.Prepare connecting to the dev
+ice, please wait a moment....]
+
+[Message : Connection is established.Device is R1762-4]
+
+Red-Giant>enable
+Red-Giant#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Red-Giant(config)#hostname R4
+
+R4(config)#line vty 0 4
+R4(config-line)#login
+R4(config-line)#password star
+[Message : Command is forbidden]
+
+R4#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R4(config)#enable password 0 star
+[Message : Command is forbidden]
+
+R4#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R4(config)#enable secret 0 star
+[Message : Command is forbidden]
+
+R4#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R4(config)#interface serial 1/2
+R4(config-if)#ip address 172.16.23.2 255.255.255.0
+R4(config-if)#no shutdown
+R4(config-if)#interface fastethernet 1/0
+R4(config-if)#ip address 172.16.4.1 255.255.255.0
+R4(config-if)#no shutdown
+R4(config-if)#end
+
+R4#show interface serial 1/2
+serial 1/2 is UP  , line protocol is UP
+Hardware is PQ2 SCC HDLC CONTROLLER serial
+Interface address is: 172.16.23.2/24
+  MTU 1500 bytes, BW 2000 Kbit
+  Encapsulation protocol is HDLC, loopback not set
+  Keepalive interval is 10 sec , set
+  Carrier delay is 2 sec
+  RXload is 1 ,Txload is 1
+  Queueing strategy: WFQ
+  5 minutes input rate 17 bits/sec, 0 packets/sec
+  5 minutes output rate 17 bits/sec, 0 packets/sec
+    376 packets input, 8272 bytes, 0 no buffer
+    Received 376 broadcasts, 0 runts, 0 giants
+    2 input errors, 0 CRC, 2 frame, 0 overrun, 0 abort
+    376 packets output, 8272 bytes, 0 underruns
+    0 output errors, 0 collisions, 4 interface resets
+    1 carrier transitions
+    V35 DTE cable
+    DCD=up  DSR=up  DTR=up  RTS=up  CTS=up
+
+R4#ping 172.16.23.1
+Sending 5, 100-byte ICMP Echoes to 172.16.23.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/37 ms
+
+//交换机
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface vlan 1
+1923-09-21 15:42:04  @5-CONFIG:Configured from outband
+Switch(config-if)#ip address 172.16.4.100 255.255.255.0
+1923-09-21 15:42:44  @5-CONFIG:Configured from outband
+Switch(config-if)#no shutdown
+1923-09-21 15:42:51  @5-CONFIG:Configured from outband
+Switch(config-if)#end
+1923-09-21 15:43:01  @5-CONFIG:Configured from outband
+
+Switch(config)#ip route 0.0.0.0 0.0.0.0 172.16.4.1
+1923-09-21 15:55:08  @5-CONFIG:Configured from outband
+Switch(config)#end
+1923-09-21 15:55:31  @5-CONFIG:Configured from outband
+Switch#show running
+
+System software version : 2.41(4) Build Nov 23 2005 Release
+
+Building configuration...
+Current configuration : 170 bytes
+
+!
+version 1.0
+!
+hostname Switch
+vlan 1
+!
+interface Vlan 1
+ ip address 172.16.4.100 255.255.255.0
+!
+ip route 0.0.0.0 0.0.0.0 Vlan 1 172.16.4.1 1 enabled
+end
+
+Switch#ping 172.16.4.1
+Sending 5, 100-byte ICMP Echos to 172.16.4.1,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 3ms, Average = 1ms
+
+Switch#ping 172.16.3.100
+Sending 5, 100-byte ICMP Echos to 172.16.3.100,
+timeout is 2000 milliseconds.
+.....
+
+Success rate is 0 percent (0/5)

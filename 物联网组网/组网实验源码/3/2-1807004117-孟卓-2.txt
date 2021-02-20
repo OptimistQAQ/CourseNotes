@@ -1,0 +1,145 @@
+PC1
+Red-Giant#co te
+Enter configuration commands, one per line.  End with CNTL/Z.
+Red-Giant(config)#in fa 1/0
+Red-Giant(config-if)#ip add 172.16.10.100 255.255.255.0
+Red-Giant(config-if)#no shutdown
+Red-Giant(config-if)#
+Red-Giant#sh run
+
+Building configuration...
+Current configuration : 407 bytes
+
+!
+version 8.32(building 53)
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface serial 1/2
+ clock rate 64000
+!
+interface serial 1/3
+ clock rate 64000
+!
+interface FastEthernet 1/0
+ ip address 172.16.10.100 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet 1/1
+ duplex auto
+ speed auto
+!
+interface Null 0
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+
+PC2
+Red-Giant#co te
+Enter configuration commands, one per line.  End with CNTL/Z.
+Red-Giant(config)#in fa 1/0
+Red-Giant(config-if)#ip add 172.16.10.200 255.255.255.0
+Red-Giant(config-if)#no shutdown
+Red-Giant(config-if)#
+Red-Giant#
+Red-Giant CON0 is now available
+
+
+Press RETURN to get started
+Red-Giant>enable
+Red-Giant#co te
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+
+Red-Giant(config)#in fa 1/0
+
+Red-Giant(config)#
+Red-Giant#sh run
+
+Building configuration...
+Current configuration : 476 bytes
+
+!
+version 8.32(building 53)
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface serial 1/2
+!
+interface serial 1/3
+ clock rate 64000
+!         
+interface serial 2/0
+ clock rate 64000
+!         
+interface serial 2/1
+ clock rate 64000
+!         
+interface FastEthernet 1/0
+ ip address 172.16.10.200 255.255.255.0
+ duplex auto
+ speed auto
+!         
+interface FastEthernet 1/1
+ duplex auto
+ speed auto
+!         
+interface Null 0
+!         
+!         
+!         
+!         
+line con 0
+line aux 0
+line vty 0 4
+ login    
+!         
+!         
+end 
+  
+PC1 PING PC2
+Red-Giant#PING 172.16.10.200
+Sending 5, 100-byte ICMP Echoes to 172.16.10.200, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+PC2 PING PC1
+Red-Giant#PING 172.16.10.100
+Sending 5, 100-byte ICMP Echoes to 172.16.10.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms

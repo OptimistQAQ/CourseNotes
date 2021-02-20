@@ -1,0 +1,220 @@
+
+[Message : Hello, welcome to use LIMP Telnet Proxy.Prepare connecting to the dev
+ice, please wait a moment....]
+
+[Message : Connection is established.Device is S2126G-1]
+
+
+Ruijie>enable
+Ruijie#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Ruijie(config)#hostname SwitchA
+SwitchA(config)#*Oct 30 08:47:16: %LINK-3-UPDOWN: Interface FastEthernet 0/2, ch
+anged state to down.
+
+SwitchA#*Oct 30 08:47:26: %SYS-5-CONFIG_I: Configured from console by console
+
+SwitchA#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+
+SwitchA(config)#spanning-tree
+Enable spanning-tree.
+SwitchA(config)#end
+SwitchA#*Oct 30 08:49:45: %SYS-5-CONFIG_I: Configured from console by console
+
+SwitchA#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+SwitchA(config)#*Oct 30 08:50:04: %SPANTREE-5-TOPOTRAP: Topology Change Trap.
+
+SwitchA(config)#show spanning-tree interface fa 0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 11
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort
+
+SwitchA(config)#spanning-tree priority 4096
+d as the Root Bridge.30 08:50:38: %SPANTREE-5-EVENT: The device has been selecte
+*Oct 30 08:50:39: %SPANTREE-5-TOPOTRAP: Topology Change Trap.
+
+SwitchA(config)#show spanning-tree
+StpVersion : STP
+SysStpStatus : ENABLED
+MaxAge : 20
+HelloTime : 2
+ForwardDelay : 15
+BridgeMaxAge : 20
+BridgeHelloTime : 2
+BridgeForwardDelay : 15
+MaxHops: 20
+TxHoldCount : 3
+PathCostMethod : Long
+BPDUGuard : Disabled
+BPDUFilter : Disabled
+LoopGuardDef  : Disabled
+BridgeAddr : 001a.a917.2d02
+Priority: 4096
+TimeSinceTopologyChange : 0d:0h:0m:29s
+TopologyChanges : 2
+DesignatedRoot : 1000.001a.a917.2d02
+RootCost : 0
+RootPort : 0
+SwitchA(config)#*Oct 30 08:51:09: %SPANTREE-5-TOPOTRAP: Topology Change Trap.
+
+SwitchA#show spanning-tree interface fa 0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 5
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort
+
+SwitchA#show spanning-tree interface fa 0/2
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8002
+PortForwardTransitions : 1
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort
+
+(断开)
+SwitchA(config)#show spanning-tree interface fa 0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 11
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+
+(连接)
+SwitchA(config)#show spanning-tree interface fa 0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 25
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort
+
+//RSTP
+(断开)
+SwitchA#show spanning-tree interface fa 0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 28
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort
+
+(连接)
+SwitchA#show spanning-tree interface fa 0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 27
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort

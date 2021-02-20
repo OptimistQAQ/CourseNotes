@@ -1,0 +1,70 @@
+SwitchA#show spanning-tree
+StpVersion : RSTP
+SysStpStatus : ENABLED
+MaxAge : 20
+HelloTime : 2
+ForwardDelay : 15
+BridgeMaxAge : 20
+BridgeHelloTime : 2
+BridgeForwardDelay : 15
+MaxHops: 20
+TxHoldCount : 3
+PathCostMethod : Long
+BPDUGuard : Disabled
+BPDUFilter : Disabled
+LoopGuardDef  : Disabled
+BridgeAddr : 001a.a917.2d02
+Priority: 4096
+TimeSinceTopologyChange : 0d:0h:7m:33s
+TopologyChanges : 25
+DesignatedRoot : 0000.00d0.f8b8.86f6
+RootCost : 2000000
+RootPort : 1
+
+SwitchA(config)#interface fastEthernet 0/1
+SwitchA(config-if-FastEthernet 0/1)#speed 10
+
+SwitchA#show spanning-tree interface fa 0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 0000.00d0.f8b8.86f6
+PortDesignatedCost : 0
+PortDesignatedBridge :0000.00d0.f8b8.86f6
+PortDesignatedPort : 8003
+PortForwardTransitions : 30
+PortAdminPathCost : 2000000
+PortOperPathCost : 2000000
+Inconsistent states : normal
+PortRole : rootPort
+SwitchA#show spanning-tree interface fa 0/2
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 0000.00d0.f8b8.86f6
+PortDesignatedCost : 2000000
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8002
+PortForwardTransitions : 13
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort

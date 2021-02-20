@@ -1,0 +1,42 @@
+//静态路由配置
+//路由器
+R4(config)#ip route 172.16.3.0 255.255.255.0 172.16.23.1
+R4(config)#end
+R4#show ip route
+
+Codes:  C - connected, S - static,  R - RIP
+        O - OSPF, IA - OSPF inter area
+        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+        E1 - OSPF external type 1, E2 - OSPF external type 2
+        * - candidate default
+
+Gateway of last resort is no set
+S    172.16.3.0/24 [1/0] via 172.16.23.1
+C    172.16.4.0/24 is directly connected, FastEthernet 1/0
+C    172.16.4.1/32 is local host.
+C    172.16.23.0/24 is directly connected, serial 1/2
+C    172.16.23.2/32 is local host.
+
+//交换机
+Switch>enable
+Switch#ping 172.16.3.100
+Sending 5, 100-byte ICMP Echos to 172.16.3.100,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 36ms Maximum = 42ms, Average = 37ms
+
+//缺省路由配置
+//路由器
+R4(config)#no ip route 172.16.3.0 255.255.255.0 172.16.23.1
+R4(config)#ip route 0.0.0.0 0.0.0.0 172.16.23.1
+
+//交换机
+Switch#ping 172.16.3.100
+Sending 5, 100-byte ICMP Echos to 172.16.3.100,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 37ms Maximum = 37ms, Average = 37ms

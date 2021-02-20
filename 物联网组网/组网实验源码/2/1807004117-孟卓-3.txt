@@ -1,0 +1,15 @@
+
+
+Red-Giant#ping 172.16.10.20
+Sending 5, 100-byte ICMP Echoes to 172.16.10.20, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+
+Red-Giant#
+Red-Giant#ping 172.16.20.20
+Sending 5, 100-byte ICMP Echoes to 172.16.20.20, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms

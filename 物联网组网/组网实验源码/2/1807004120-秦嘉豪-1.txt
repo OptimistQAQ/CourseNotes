@@ -1,0 +1,125 @@
+Red-Giant#ping 172.16.0.5
+Sending 5, 100-byte ICMP Echoes to 172.16.0.5, timeout is 2 seconds:
+  < press Ctrl+C to break >
+....
+Success rate is 0 percent (0/5)
+Red-Giant#en
+Red-Giant#enable
+Red-Giant#ping 172.16.0.5
+Sending 5, 100-byte ICMP Echoes to 172.16.0.5, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+
+
+
+
+
+
+
+Ruijie#show vl
+VLAN Name                             Status    Ports     
+---- -------------------------------- --------- -----------------------------------
+   1 VLAN0001                         STATIC    Fa0/3, Fa0/4, Fa0/5, Fa0/6            
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10           
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14        
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18        
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22        
+                                                Fa0/23, Fa0/24, Gi0/25, Gi0/26        
+  10 test10                           STATIC    Fa0/1                                 
+  20 test20                           STATIC    Fa0/2 
+
+
+
+
+
+
+Ruijie#sh ru
+
+Building configuration...
+Current configuration : 1143 bytes
+
+!
+version RGOS 10.2(5p1), Release(122585)(Wed Aug 24 11:37:41 CST 2011 -ngcf67)
+!
+!
+!
+vlan 1
+!
+vlan 10
+ name test10
+!
+vlan 20
+ name test20
+!
+!
+no service password-encryption
+!
+!
+!
+!
+!
+!         
+!         
+interface FastEthernet 0/1
+ switchport access vlan 10
+!         
+interface FastEthernet 0/2
+ switchport access vlan 20
+!         
+interface FastEthernet 0/3
+!         
+interface FastEthernet 0/4
+!         
+interface FastEthernet 0/5
+!         
+interface FastEthernet 0/6
+!         
+interface FastEthernet 0/7
+!         
+interface FastEthernet 0/8
+!         
+interface FastEthernet 0/9
+!         
+interface FastEthernet 0/10
+!         
+interface FastEthernet 0/11
+!         
+interface FastEthernet 0/12
+!         
+interface FastEthernet 0/13
+!         
+interface FastEthernet 0/14
+!         
+interface FastEthernet 0/15
+!         
+interface FastEthernet 0/16
+!         
+interface FastEthernet 0/17
+!         
+interface FastEthernet 0/18
+!         
+interface FastEthernet 0/19
+!         
+interface FastEthernet 0/20
+!         
+interface FastEthernet 0/21
+!         
+interface FastEthernet 0/22
+!         
+interface FastEthernet 0/23
+!         
+interface FastEthernet 0/24
+!         
+interface GigabitEthernet 0/25
+!         
+interface GigabitEthernet 0/26
+!         
+!         
+line con 0
+line vty 0 4
+ login    
+!         
+!         
+end   

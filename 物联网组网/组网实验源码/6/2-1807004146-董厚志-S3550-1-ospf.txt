@@ -1,0 +1,162 @@
+2-S3550-1-SA#ping 172.16.34.1
+Sending 5, 100-byte ICMP Echos to 172.16.34.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-1-SA#ping 172.16.34.2
+Sending 5, 100-byte ICMP Echos to 172.16.34.2, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 2ms, Average = 1ms
+
+2-S3550-1-SA#ping 172.16.23.1
+Sending 5, 100-byte ICMP Echos to 172.16.23.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-1-SA#ping 172.16.13.1
+Sending 5, 100-byte ICMP Echos to 172.16.13.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+
+
+2-S3550-1-SA#show ip ospf neig
+                                                                              
+Neighbor ID     Pri State            DeadTime Address         Interface
+--------------- --- ---------------- -------- --------------- ----------
+172.16.10.1     1   full/BDR         00:00:36 172.16.13.1     Fa0/3     
+172.16.20.1     1   full/DR          00:00:34 172.16.23.1     Fa0/2     
+
+2-S3550-1-SA#sh ip ospf database database-summary
+                                                                              
+
+Area : 0.0.0.0
+  LSA Type      Count       Delete      Maxage
+  ------------- ----------- ----------- -----------
+  Router        3           5           0          
+  Network       2           0           0          
+  Summary Net   0           0           0          
+  Summary ASBR  0           0           0          
+  Type-7 Ext    0           0           0          
+  Subtotal      5           5           0          
+
+Total : 
+  LSA Type      Count       Delete      Maxage
+  ------------- ----------- ----------- -----------
+  Router        3           5           0          
+  Network       2           0           0          
+  Summary Net   0           0           0          
+  Summary ASBR  0           0           0          
+  type-5 Ext    0           0           0          
+  Type-7 Ext    0           0           0          
+  Total         5           5           0                                     
+
+2-S3550-1-SA#show ip ospf database router
+                                                                              
+
+                  Router Link States (Area  0.0.0.0)
+
+
+  LS age             : 103
+  Options            : 0x2
+  LS Type            : Router Links
+  Link State ID      : 172.16.10.1
+  Advertising Router : 172.16.10.1
+  LS Seq Number      : 80000004
+  Checksum           : 0x58F5
+  Length             : 48
+  Number of Links    : 2
+
+      Link connected to     : transit network
+      Link ID               : 172.16.13.2
+      Link Data             : 172.16.13.1
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+      Link connected to     : stub network                                    
+      Link ID               : 172.16.14.0
+      Link Data             : 255.255.255.0
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+
+  LS age             : 124
+  Options            : 0x2
+  LS Type            : Router Links
+  Link State ID      : 172.16.20.1
+  Advertising Router : 172.16.20.1
+  LS Seq Number      : 80000005
+  Checksum           : 0x47D4
+  Length             : 48
+  Number of Links    : 2
+
+      Link connected to     : transit network
+      Link ID               : 172.16.23.1
+      Link Data             : 172.16.23.1
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1                                               
+
+      Link connected to     : stub network
+      Link ID               : 172.16.24.0
+      Link Data             : 255.255.255.0
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+
+  LS age             : 99
+  Options            : 0x2
+  LS Type            : Router Links
+  Link State ID      : 172.16.34.1
+  Advertising Router : 172.16.34.1
+  LS Seq Number      : 80000006
+  Checksum           : 0xF259
+  Length             : 60
+  Number of Links    : 3
+
+      Link connected to     : transit network
+      Link ID               : 172.16.13.2
+      Link Data             : 172.16.13.2                                     
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+      Link connected to     : transit network
+      Link ID               : 172.16.23.1
+      Link Data             : 172.16.23.2
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+      Link connected to     : stub network
+      Link ID               : 172.16.34.0
+      Link Data             : 255.255.255.0
+      Number of TOS metrics : 0
+      TOS 0 Metrics         : 1
+
+
+2-S3550-1-SA#show ip route               
+                                                                              
+Type:  C - connected, S - static, R - RIP, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+
+Type Destination IP     Next hop        Interface Distance Metric   Status
+---- ------------------ --------------- --------- -------- -------- --------
+S    0.0.0.0/0          172.16.10.1     none      1        0        Inactive
+C    172.16.13.0/24     0.0.0.0         Fa0/3     0        0        Active
+O    172.16.14.0/24     172.16.13.1     Fa0/3     110      2        Active
+C    172.16.23.0/24     0.0.0.0         Fa0/2     0        0        Active
+O    172.16.24.0/24     172.16.23.1     Fa0/2     110      2        Active
+C    172.16.34.0/24     0.0.0.0         Fa0/4     0        0        Active
+
+2-S3550-1-SA#

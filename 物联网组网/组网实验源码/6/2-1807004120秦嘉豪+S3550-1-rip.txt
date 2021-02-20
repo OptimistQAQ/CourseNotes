@@ -1,0 +1,23 @@
+2-S3550-1-SA#ping 172.16.13.1
+Sending 5, 100-byte ICMP Echos to 172.16.13.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-1-SA#ping 172.16.34.2
+Sending 5, 100-byte ICMP Echos to 172.16.34.2, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-1-SA#ping 172.16.23.1
+Sending 5, 100-byte ICMP Echos to 172.16.23.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms

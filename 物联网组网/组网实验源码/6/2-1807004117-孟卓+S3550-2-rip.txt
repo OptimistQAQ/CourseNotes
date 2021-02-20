@@ -1,0 +1,114 @@
+2-S3550-2-SA#ping 172.16.34.1
+Sending 5, 100-byte ICMP Echos to 172.16.34.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-2-SA#ping 172.16.34.2
+Sending 5, 100-byte ICMP Echos to 172.16.34.2, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 2ms, Average = 1ms
+
+2-S3550-2-SA#ping 172.16.23.1
+Sending 5, 100-byte ICMP Echos to 172.16.23.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-2-SA#ping 172.16.13.1
+Sending 5, 100-byte ICMP Echos to 172.16.13.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+
+
+2-S3550-2#ping 172.16.20.1
+Sending 5, 100-byte ICMP Echos to 172.16.20.1, 
+timeout is 2000 milliseconds.
+.....
+                                                                              
+Success rate is 0 percent (0/5)
+
+2-S3550-2#ping 172.16.10.1
+Sending 5, 100-byte ICMP Echos to 172.16.10.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+
+2-S3550-2#sh ip route
+                                                                              
+Type:  C - connected, S - static, R - RIP, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+
+Type Destination IP     Next hop        Interface Distance Metric   Status
+---- ------------------ --------------- --------- -------- -------- --------
+S    0.0.0.0/0          172.16.20.1     none      1        0        Inactive
+R    172.16.10.0/24     172.16.14.1     Fa0/1     120      2        Active
+R    172.16.13.0/24     172.16.34.1     Fa0/4     120      16       Disabled
+C    172.16.14.0/24     0.0.0.0         Fa0/1     0        0        Active
+R    172.16.20.0/24     172.16.24.1     Fa0/2     120      2        Active
+R    172.16.23.0/24     172.16.34.1     Fa0/4     120      16       Disabled
+C    172.16.24.0/24     0.0.0.0         Fa0/2     0        0        Active
+C    172.16.34.0/24     0.0.0.0         Fa0/4     0        0        Active
+R    172.16.34.0/24     172.16.14.1     Fa0/1     120      3        Active
+
+2-S3550-2#sh run
+
+System software version : 2.41(4) Build Nov 23 2005 Release
+
+Building configuration...
+Current configuration : 453 bytes
+
+!
+version 1.0
+!
+hostname 2-S3550-2
+vlan 1
+!
+interface FastEthernet 0/1
+ no switchport
+ ip address 172.16.14.2 255.255.255.0 
+!
+interface FastEthernet 0/2
+ no switchport
+ ip address 172.16.24.2 255.255.255.0 
+!
+interface FastEthernet 0/4
+ no switchport
+ ip address 172.16.34.2 255.255.255.0 
+!
+interface Vlan 1
+!
+router rip
+ version 2  
+network 172.16.0.0 mask 255.255.0.0
+!        
+ip route 0.0.0.0 0.0.0.0 172.16.20.1 1 enabled
+end 
+
+2-S3550-2#sh ip rip
+                                                                              
+UpdateTime                    :  30
+Next due in                   :  00:00:01
+InvalidTime                   :  180
+HolddownTime                  :  120
+RecommendSetting              :  ripv2
+Redistribute Default Metric   :  1
+AdministrativeDistance        :  120
+Validate update source status :  Enabled
+Default-information originate :  Disabled
+

@@ -1,0 +1,50 @@
+Switch#sh vlan
+                                                                              
+VLAN Name                             Status    Ports                  
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1 ,Fa0/2 ,Fa0/3 ,Fa0/4 
+                                                Fa0/5 ,Fa0/6 ,Fa0/7 ,Fa0/8 
+                                                Fa0/9 ,Fa0/10,Fa0/11,Fa0/12
+                                                Fa0/13,Fa0/14,Fa0/15,Fa0/16
+                                                Fa0/17,Fa0/18,Fa0/19,Fa0/20
+                                                Fa0/21,Fa0/22,Fa0/23,Fa0/24
+10   sales                            active    Fa0/3 
+11   test11                           active    Fa0/3 
+20   technical                        active    Fa0/3 
+
+
+
+Switch#sh in fa 0/3 sw
+Interface  Switchport Mode      Access  Native   Protected VLAN lists         
+---------- ---------- --------- ------- -------- --------- ---------------------
+Fa0/3      Enabled    Trunk     10      1        Disabled  All
+
+
+
+Switch#sh run
+
+System software version : 2.41(4) Build Nov 23 2005 Release
+
+Building configuration...
+Current configuration : 217 bytes
+
+!
+version 1.0
+!
+hostname Switch
+vlan 1
+!
+vlan 10
+ name sales
+!
+vlan 11
+ name test11
+!
+vlan 20
+ name technical
+!
+interface FastEthernet 0/3
+ switchport mode trunk
+ switchport access vlan 10
+!
+end

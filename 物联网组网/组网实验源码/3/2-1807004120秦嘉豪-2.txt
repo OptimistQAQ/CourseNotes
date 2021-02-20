@@ -1,0 +1,100 @@
+Switch#sh spanning-tree
+
+StpVersion : RSTP                                                             
+SysStpStatus : Enabled
+BaseNumPorts : 24
+MaxAge : 20
+HelloTime : 2
+ForwardDelay : 15
+BridgeMaxAge : 20
+BridgeHelloTime : 2
+BridgeForwardDelay : 15
+MaxHops : 20
+TxHoldCount : 3
+PathCostMethod : Long
+BPDUGuard : Disabled
+BPDUFilter : Disabled
+BridgeAddr : 00d0.f8b8.86f6
+Priority : 0
+TimeSinceTopologyChange : 0d:0h:1m:3s
+TopologyChanges : 0
+DesignatedRoot : 000000D0F8B886F6
+RootCost : 0
+RootPort : 0
+
+
+Switch#sh spanning-tree in fa 0/1
+
+PortAdminPortfast : Disabled                                                  
+PortOperPortfast : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard: Disabled
+PortBPDUFilter: Disabled
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 800000D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 800000D0F8B886F6
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 0
+PortRole : disabledPort
+
+Switch#sh spanning-tree in fa 0/2
+
+PortAdminPortfast : Disabled                                                  
+PortOperPortfast : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : shared
+PortBPDUGuard: Disabled
+PortBPDUFilter: Disabled
+PortState : discarding
+PortPriority : 0
+PortDesignatedRoot : 800000D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 800000D0F8B886F6
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 2000000
+PortRole : disabledPort
+
+Switch#sh spanning-tree in fa 0/3
+
+PortAdminPortfast : Disabled                                                  
+PortOperPortfast : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard: Disabled
+PortBPDUFilter: Disabled
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 000000D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 000000D0F8B886F6
+PortDesignatedPort : 8003
+PortForwardTransitions : 1
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+Switch#sh spanning-tree in fa 0/4
+
+PortAdminPortfast : Disabled                                                  
+PortOperPortfast : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard: Disabled
+PortBPDUFilter: Disabled
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 000000D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 000000D0F8B886F6
+PortDesignatedPort : 8004
+PortForwardTransitions : 1
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort

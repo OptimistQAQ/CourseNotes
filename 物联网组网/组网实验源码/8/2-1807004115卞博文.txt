@@ -1,0 +1,411 @@
+2-S3550-1-H1#ping 172.16.1.1
+Sending 5, 100-byte ICMP Echos to 172.16.1.1,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-1-H1#ping 172.16.1.6
+Sending 5, 100-byte ICMP Echos to 172.16.1.6,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 3ms, Average = 1ms
+
+2-S3550-1-H1#show spanning-tree mst configuration
+Multi spanning tree protocol : Enabled
+Name     : 2
+Revision : 1
+Instance  Vlans Mapped
+--------  ------------------------------------------------------------
+0         1-9,11-19,21-29,31-39,41-4094
+1         10,30
+2         20,40
+----------------------------------------------------------------------
+
+2-S3550-1-H1#show spanning-tree mst 1
+
+
+###### MST 1 vlans mapped : 10,30
+BridgeAddr : 00d0.f8b8.86f6
+Priority : 4096
+TimeSinceTopologyChange : 0d:0h:53m:9s
+TopologyChanges : 0
+DesignatedRoot : 100100D0F8B886F6
+RootCost : 0
+RootPort : 0
+
+2-S3550-1-H1#show spanning-tree mst 2
+
+
+###### MST 2 vlans mapped : 20,40
+BridgeAddr : 00d0.f8b8.86f6
+Priority : 32768
+TimeSinceTopologyChange : 0d:0h:53m:16s
+TopologyChanges : 0
+DesignatedRoot : 100200D0F8B88D26
+RootCost : 200000
+RootPort : Fa0/3
+
+2-S3550-1-H1#show spanning-tree mst 1 interface fa 0/1
+
+
+###### MST 1 vlans mapped : 10,30
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 800100D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 800100D0F8B886F6
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 0
+PortRole : disabledPort
+
+2-S3550-1-H1#show spanning-tree mst 1 interface fa 0/2
+
+
+###### MST 1 vlans mapped : 10,30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100100D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 100100D0F8B886F6
+PortDesignatedPort : 8002
+PortForwardTransitions : 3
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+2-S3550-1-H1#show spanning-tree mst 1 interface fa 0/3
+
+
+###### MST 1 vlans mapped : 10,30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100100D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 100100D0F8B886F6
+PortDesignatedPort : 8003
+PortForwardTransitions : 2
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+2-S3550-1-H1#show spanning-tree mst 2 interface fa 0/1
+
+
+###### MST 2 vlans mapped : 20,40
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 800200D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 800200D0F8B886F6
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 0
+PortRole : disabledPort
+
+2-S3550-1-H1#show spanning-tree mst 2 interface fa 0/2
+
+
+###### MST 2 vlans mapped : 20,40
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 100200D0F8B88D26
+PortDesignatedCost : 200000
+PortDesignatedBridge : 8002001AA9172CBC
+PortDesignatedPort : 8002
+PortForwardTransitions : 2
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : alternatePort
+
+2-S3550-1-H1#show spanning-tree mst 2 interface fa 0/3
+
+
+###### MST 2 vlans mapped : 20,40
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100200D0F8B88D26
+PortDesignatedCost : 0
+PortDesignatedBridge : 100200D0F8B88D26
+PortDesignatedPort : 83E9
+PortForwardTransitions : 1
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : rootPort
+
+2-S3550-1-H1#show standby
+
+If      Group State  Priority Preempt Interval Virtual IP      Auth
+------- ----- ------ -------- ------- -------- --------------- --------
+VL10    10    master 200      may     1        172.16.10.254
+VL20    20    master 100      may     1        172.16.20.254
+VL30    30    master 200      may     1        172.16.30.254
+VL40    40    master 100      may     1        172.16.40.254
+
+//第9步验证
+2-S3550-1-H1#show run
+
+System software version : 2.41(4) Build Nov 23 2005 Release
+
+Building configuration...
+Current configuration : 1292 bytes
+
+!
+version 1.0
+!
+hostname 2-S3550-1-H1
+vlan 1
+!
+vlan 10
+!
+vlan 20
+!
+vlan 30
+!
+vlan 40
+!
+  spanning-tree
+  spanning-tree mst configuration
+  instance 1 vlan 10,30
+  instance 2 vlan 20,40
+  name 2
+  revision 1
+!
+  spanning-tree mst 1 priority 4096
+interface FastEthernet 0/2
+ switchport mode trunk
+!
+interface FastEthernet 0/3
+ switchport mode trunk
+!
+interface FastEthernet 0/4
+ no switchport
+ ip address 172.16.1.2 255.255.255.252
+!
+interface FastEthernet 0/8
+ switchport mode trunk
+!
+interface Vlan 10
+ ip address 172.16.10.1 255.255.255.0
+    standby 10 ip 172.16.10.254
+    standby 10 priority 200
+!
+interface Vlan 20
+ ip address 172.16.20.1 255.255.255.0
+    standby 20 ip 172.16.20.254
+!
+interface Vlan 30
+ ip address 172.16.30.1 255.255.255.0
+    standby 30 ip 172.16.30.254
+    standby 30 priority 200
+!
+interface Vlan 40
+ ip address 172.16.40.1 255.255.255.0
+    standby 40 ip 172.16.40.254
+!
+router ospf
+area 0.0.0.0
+network 172.16.1.0 255.255.255.252 area 0.0.0.0
+network 172.16.10.0 255.255.255.0 area 0.0.0.0
+network 172.16.20.0 255.255.255.0 area 0.0.0.0
+network 172.16.30.0 255.255.255.0 area 0.0.0.0
+network 172.16.40.0 255.255.255.0 area 0.0.0.0
+!
+ip route 0.0.0.0 0.0.0.0 202.100.1.1 1 enabled
+end
+
+2-S3550-1-H1#show vlan
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1 ,Fa0/2 ,Fa0/3 ,Fa0/5
+                                                Fa0/6 ,Fa0/7 ,Fa0/8 ,Fa0/9
+                                                Fa0/10,Fa0/11,Fa0/12,Fa0/13
+                                                Fa0/14,Fa0/15,Fa0/16,Fa0/17
+                                                Fa0/18,Fa0/19,Fa0/20,Fa0/21
+                                                Fa0/22,Fa0/23,Fa0/24
+10   VLAN0010                         active    Fa0/2 ,Fa0/3 ,Fa0/8
+20   VLAN0020                         active    Fa0/2 ,Fa0/3 ,Fa0/8
+30   VLAN0030                         active    Fa0/2 ,Fa0/3 ,Fa0/8
+40   VLAN0040                         active    Fa0/2 ,Fa0/3 ,Fa0/8
+
+2-S3550-1-H1#show spanning-tree mst configuration
+Multi spanning tree protocol : Enabled
+Name     : 2
+Revision : 1
+Instance  Vlans Mapped
+--------  ------------------------------------------------------------
+0         1-9,11-19,21-29,31-39,41-4094
+1         10,30
+2         20,40
+----------------------------------------------------------------------
+
+2-S3550-1-H1#show spanning-tree mst 1
+
+
+###### MST 1 vlans mapped : 10,30
+BridgeAddr : 00d0.f8b8.86f6
+Priority : 4096
+TimeSinceTopologyChange : 0d:1h:43m:21s
+TopologyChanges : 0
+DesignatedRoot : 100100D0F8B886F6
+RootCost : 0
+RootPort : 0
+
+2-S3550-1-H1#show spanning-tree mst 2
+
+
+###### MST 2 vlans mapped : 20,40
+BridgeAddr : 00d0.f8b8.86f6
+Priority : 32768
+TimeSinceTopologyChange : 0d:1h:43m:26s
+TopologyChanges : 0
+DesignatedRoot : 100200D0F8B88D26
+RootCost : 200000
+RootPort : Fa0/3
+
+2-S3550-1-H1#show spanning-tree mst 1 interface fa 0/1
+
+
+###### MST 1 vlans mapped : 10,30
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 800100D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 800100D0F8B886F6
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 0
+PortRole : disabledPort
+
+2-S3550-1-H1#show spanning-tree mst 1 interface fa 0/2
+
+
+###### MST 1 vlans mapped : 10,30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100100D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 100100D0F8B886F6
+PortDesignatedPort : 8002
+PortForwardTransitions : 3
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+2-S3550-1-H1#show spanning-tree mst 1 interface fa 0/3
+
+
+###### MST 1 vlans mapped : 10,30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100100D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 100100D0F8B886F6
+PortDesignatedPort : 8003
+PortForwardTransitions : 2
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+2-S3550-1-H1#show spanning-tree mst 2 interface fa 0/1
+
+
+###### MST 2 vlans mapped : 20,40
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 800200D0F8B886F6
+PortDesignatedCost : 0
+PortDesignatedBridge : 800200D0F8B886F6
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 0
+PortRole : disabledPort
+
+2-S3550-1-H1#show spanning-tree mst 2 interface fa 0/2
+
+
+###### MST 2 vlans mapped : 20,40
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 100200D0F8B88D26
+PortDesignatedCost : 200000
+PortDesignatedBridge : 8002001AA9172CBC
+PortDesignatedPort : 8002
+PortForwardTransitions : 2
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : alternatePort
+
+2-S3550-1-H1#show spanning-tree mst 2 interface fa 0/3
+
+
+###### MST 2 vlans mapped : 20,40
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100200D0F8B88D26
+PortDesignatedCost : 0
+PortDesignatedBridge : 100200D0F8B88D26
+PortDesignatedPort : 83E9
+PortForwardTransitions : 1
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : rootPort
+
+2-S3550-1-H1#show standby
+
+If      Group State  Priority Preempt Interval Virtual IP      Auth
+------- ----- ------ -------- ------- -------- --------------- --------
+VL10    10    master 200      may     1        172.16.10.254
+VL20    20    backup 100      may     1        172.16.20.254
+VL30    30    master 200      may     1        172.16.30.254
+VL40    40    backup 100      may     1        172.16.40.254
+
+2-S3550-1-H1#show ip route
+
+Type:  C - connected, S - static, R - RIP, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+
+Type Destination IP     Next hop        Interface Distance Metric   Status
+---- ------------------ --------------- --------- -------- -------- --------
+S    0.0.0.0/0          202.100.1.1     none      1        0        Inactive
+C    172.16.1.0/30      0.0.0.0         Fa0/4     0        0        Active
+O    172.16.1.4/30      172.16.1.1      Fa0/4     110      2        Active
+C    172.16.10.0/24     0.0.0.0         VL10      0        0        Active
+C    172.16.20.0/24     0.0.0.0         VL20      0        0        Active
+C    172.16.30.0/24     0.0.0.0         VL30      0        0        Active
+C    172.16.40.0/24     0.0.0.0         VL40      0        0        Active
+O    202.100.1.1/32     172.16.1.1      Fa0/4     110      2        Active
+
+2-S3550-1-H1#ping 172.16.1.1
+Sending 5, 100-byte ICMP Echos to 172.16.1.1,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-1-H1#ping 172.16.1.5
+Sending 5, 100-byte ICMP Echos to 172.16.1.5,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-S3550-1-H1#ping 172.16.1.6
+Sending 5, 100-byte ICMP Echos to 172.16.1.6,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms

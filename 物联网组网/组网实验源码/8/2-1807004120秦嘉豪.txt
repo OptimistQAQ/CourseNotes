@@ -1,0 +1,254 @@
+2-S2126G-2-S2(config)#show spanning-tree mst configuration
+Multi spanning tree protocol : Enable
+Name     : 2
+Revision : 1
+Instance  Vlans Mapped
+-------- --------------------------------------------
+0        : 1-9, 11-19, 21-29, 31-39, 41-4094
+1        : 10, 30
+2        : 20, 40
+-----------------------------------------------------
+2-S2126G-2-S2(config)#show spanning-tree mst 1
+
+###### MST 1 vlans mapped : 10, 30
+BridgeAddr : 001a.a917.2cbc
+Priority: 32768
+TimeSinceTopologyChange : 0d:0h:1m:25s
+TopologyChanges : 9
+DesignatedRoot : 1001.00d0.f8b8.86f6
+RootCost : 200000
+RootPort : 2
+
+
+
+2-S2126G-2-S2(config)#show spanning-tree mst 2
+
+###### MST 2 vlans mapped : 20, 40
+BridgeAddr : 001a.a917.2cbc
+Priority: 32768
+TimeSinceTopologyChange : 0d:0h:1m:1s
+TopologyChanges : 7
+DesignatedRoot : 1002.00d0.f8b8.8d26
+RootCost : 200000
+RootPort : 1
+
+
+
+
+2-S2126G-2-S2(config)#show spanning-tree mst 1 in fa 0/1
+
+###### MST 1 vlans mapped :10, 30
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 1001.00d0.f8b8.86f6
+PortDesignatedCost : 0
+PortDesignatedBridge : 8001.00d0.f8b8.8d26
+PortDesignatedPort : 8001
+PortForwardTransitions : 4
+PortAdminPathCost : 0
+PortoperPathCost : 200000
+PortRole : alternatePort
+2-S2126G-2-S2(config)#
+
+
+
+2-S2126G-2-S2(config)#show spanning-tree mst 1 in fa 0/2
+
+###### MST 1 vlans mapped :10, 30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1001.00d0.f8b8.86f6
+PortDesignatedCost : 0
+PortDesignatedBridge : 1001.00d0.f8b8.86f6
+PortDesignatedPort : 8002
+PortForwardTransitions : 2
+PortAdminPathCost : 0
+PortoperPathCost : 200000
+PortRole : rootPort
+2-S2126G-2-S2(config)#
+
+
+
+
+2-S2126G-2-S2(config)#show spanning-tree mst 2 in fa 0/2
+
+###### MST 2 vlans mapped :20, 40
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1002.00d0.f8b8.8d26
+PortDesignatedCost : 0
+PortDesignatedBridge : 8002.001a.a917.2cbc
+PortDesignatedPort : 8002
+PortForwardTransitions : 2
+PortAdminPathCost : 0
+PortoperPathCost : 200000
+PortRole : designatedPort
+2-S2126G-2-S2(config)#
+
+
+
+
+
+2-S2126G-2-S2(config)#show spanning-tree mst 2 in fa 0/1
+
+###### MST 2 vlans mapped :20, 40
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1002.00d0.f8b8.8d26
+PortDesignatedCost : 0
+PortDesignatedBridge : 1002.00d0.f8b8.8d26
+PortDesignatedPort : 8001
+PortForwardTransitions : 3
+PortAdminPathCost : 0
+PortoperPathCost : 200000
+PortRole : rootPort
+2-S2126G-2-S2(config)#
+
+
+
+
+
+2-S2126G-2-S2(config)#sh run
+
+Building configuration...
+Current configuration : 1887 bytes
+
+!
+version RGOS 10.2(5p1), Release(122585)(Wed Aug 24 11:37:41 CST 2011 -ngcf67)
+!
+!
+!
+vlan 1
+!
+vlan 10
+!
+vlan 20
+!
+vlan 30
+!
+vlan 40
+!
+!
+no service password-encryption
+!
+!
+!
+!         
+!
+!
+!
+spanning-tree
+spanning-tree mst configuration
+ revision 1
+ name 2
+ instance 0 vlan 1-9, 11-19, 21-29, 31-39, 41-4094
+ instance 1 vlan 10, 30
+ instance 2 vlan 20, 40
+hostname 2-S2126G-2-S2
+interface FastEthernet 0/1
+ switchport mode trunk
+!
+interface FastEthernet 0/2
+ switchport mode trunk
+!
+interface FastEthernet 0/3
+!
+interface FastEthernet 0/4
+!
+interface FastEthernet 0/5
+ switchport access vlan 10
+!         
+interface FastEthernet 0/6
+ switchport access vlan 10
+!
+interface FastEthernet 0/7
+ switchport access vlan 10
+!
+interface FastEthernet 0/8
+ switchport access vlan 10
+!
+interface FastEthernet 0/9
+ switchport access vlan 10
+!
+interface FastEthernet 0/10
+ switchport access vlan 10
+!
+interface FastEthernet 0/11
+ switchport access vlan 20
+!
+interface FastEthernet 0/12
+ switchport access vlan 20
+!
+interface FastEthernet 0/13
+ switchport access vlan 20
+!         
+interface FastEthernet 0/14
+ switchport access vlan 20
+!
+interface FastEthernet 0/15
+ switchport access vlan 20
+!
+interface FastEthernet 0/16
+ switchport access vlan 30
+!
+interface FastEthernet 0/17
+ switchport access vlan 30
+!
+interface FastEthernet 0/18
+ switchport access vlan 30
+!
+interface FastEthernet 0/19
+ switchport access vlan 30
+!
+interface FastEthernet 0/20
+ switchport access vlan 30
+!
+interface FastEthernet 0/21
+ switchport access vlan 40
+!         
+interface FastEthernet 0/22
+ switchport access vlan 40
+!
+interface FastEthernet 0/23
+ switchport access vlan 40
+!
+interface FastEthernet 0/24
+ switchport access vlan 40
+!
+interface GigabitEthernet 0/25
+!
+interface GigabitEthernet 0/26
+!
+!
+line con 0
+line vty 0 4
+ login
+!
+!
+end
+
+
+
+
+
+2-S2126G-2-S2(config)#
+
+VLAN Name                             Status    Ports     
+---- -------------------------------- --------- -----------------------------------
+   1 VLAN0001                         STATIC    Fa0/1, Fa0/2, Fa0/3, Fa0/4            
+                                                Gi0/25, Gi0/26                        
+  10 VLAN0010                         STATIC    Fa0/1, Fa0/2, Fa0/5, Fa0/6            
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10           
+  20 VLAN0020                         STATIC    Fa0/1, Fa0/2, Fa0/11, Fa0/12          
+                                                Fa0/13, Fa0/14, Fa0/15                
+  30 VLAN0030                         STATIC    Fa0/1, Fa0/2, Fa0/16, Fa0/17          
+                                                Fa0/18, Fa0/19, Fa0/20                
+  40 VLAN0040                         STATIC    Fa0/1, Fa0/2, Fa0/21, Fa0/22          
+                                                Fa0/23, Fa0/24                        
+2-S2126G-2-S2(config)#
+
+
+
+
+
+

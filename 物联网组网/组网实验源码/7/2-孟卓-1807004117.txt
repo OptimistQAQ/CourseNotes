@@ -1,0 +1,114 @@
+S3550-1#sh ip route
+                                                                              
+Type:  C - connected, S - static, R - RIP, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+
+Type Destination IP     Next hop        Interface Distance Metric   Status
+---- ------------------ --------------- --------- -------- -------- --------
+S    0.0.0.0/0          172.16.20.1     VL1       1        0        Active
+C    172.16.20.0/24     0.0.0.0         VL1       0        0        Active
+
+S3550-1#ping 172.16.11.1
+Sending 5, 100-byte ICMP Echos to 172.16.11.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 36ms Maximum = 37ms, Average = 36ms
+
+S3550-2#sh ip route 
+                                                                              
+Type:  C - connected, S - static, R - RIP, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+
+Type Destination IP     Next hop        Interface Distance Metric   Status
+---- ------------------ --------------- --------- -------- -------- --------
+S    0.0.0.0/0          172.16.21.1     VL1       1        0        Active
+C    172.16.21.0/24     0.0.0.0         VL1       0        0        Active
+
+S3550-2#ping 172.16.10.100
+Sending 5, 100-byte ICMP Echos to 172.16.10.100, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 37ms Maximum = 40ms, Average = 37ms
+
+S3550-1#sh ip in
+                                                                              
+Interface            : VL1
+Description          : Vlan 1
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.20.10/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d6
+
+S3550-1#
+S3550-1#ping 172.16.11.1
+Sending 5, 100-byte ICMP Echos to 172.16.11.1, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 36ms Maximum = 41ms, Average = 37ms
+
+S3550-2#ping 172.16.11.100
+Sending 5, 100-byte ICMP Echos to 172.16.11.100, 
+timeout is 2000 milliseconds.
+!!!!
+S3550-2#ping 172.16.10.10 
+Sending 5, 100-byte ICMP Echos to 172.16.10.10, 
+timeout is 2000 milliseconds.
+....
+S3550-2#ping 172.16.20.1 
+Sending 5, 100-byte ICMP Echos to 172.16.20.1, 
+timeout is 2000 milliseconds.
+.....
+
+S3550-1#sh ip in
+                                                                              
+Interface            : VL1
+Description          : Vlan 1
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.17.20.100/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d6
+
+Interface            : VL10
+Description          : Vlan 10
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.10.1/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d7
+
+Interface            : VL20
+Description          : Vlan 20
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.20.1/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d8
+         
+Interface            : VL30
+Description          : Vlan 30
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.30.1/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d9
+
+Standard IP access list: my_acl
+    permit host 172.16.20.100
+    permit 172.16.30.0 0.0.0.255
+
+S3550-1#sh ip access-group
+                                                                              
+Interface  inbound access-list              outbound access-list
+---------- -------------------------------- --------------------------------
+VL10                                        my_acl
+

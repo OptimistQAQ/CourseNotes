@@ -1,0 +1,173 @@
+SwitchB#show spanning-tree*Oct 30 08:34:14: %S
+: New Root Port is FastEthernet 0/1. New Root
+
+StpVersion : STP
+SysStpStatus : ENABLED
+MaxAge : 20
+HelloTime : 2
+ForwardDelay : 15
+BridgeMaxAge : 20
+BridgeHelloTime : 2
+BridgeForwardDelay : 15
+MaxHops: 20
+TxHoldCount : 3
+PathCostMethod : Long
+BPDUGuard : Disabled
+BPDUFilter : Disabled
+LoopGuardDef  : Disabled
+BridgeAddr : 001a.a917.2cbc
+Priority: 32768
+TimeSinceTopologyChange : 0d:0h:0m:30s
+TopologyChanges : 2
+DesignatedRoot : 1000.001a.a917.2d02
+RootCost : 200000
+RootPort : 1
+SwitchB#
+SwitchB#show spanning-tree interface fastEthernet0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 3
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : rootPort
+SwitchB#
+
+SwitchB#show spanning-tree interface fastEthernet0/2
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8002
+PortForwardTransitions : 0
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : alternatePort
+SwitchB#
+
+断开变化
+SwitchB#show spanning-tree interface fastEthernet0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 10
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : rootPort
+SwitchB#
+
+连接变化
+SwitchB#show spanning-tree interface fastethernet0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 24
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : rootPort
+SwitchB#
+
+
+RSTP 变化 连接
+SwitchB#show spanning-tree interface fa0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 26
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : rootPort
+SwitchB#
+
+断开变化
+SwitchB#show spanning-tree interface fa0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 1000.001a.a917.2d02
+PortDesignatedCost : 0
+PortDesignatedBridge :1000.001a.a917.2d02
+PortDesignatedPort : 8001
+PortForwardTransitions : 27
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : rootPort
+SwitchB#

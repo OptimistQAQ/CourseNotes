@@ -1,0 +1,171 @@
+
+[Message : Hello, welcome to use LIMP Telnet Proxy.Prepare connecting to the dev
+ice, please wait a moment....]
+
+[Message : Connection is established.Device is R1762-2]
+
+Red-Giant>en
+Red-Giant#con ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+Red-Giant(config)#hostname 2-R1762-2-RB
+2-R1762-2-RB(config)#interface fa 1/0
+2-R1762-2-RB(config-if)#ip address 172.16.23.1 255.255.255.0
+2-R1762-2-RB(config-if)#interface fa 1/1
+2-R1762-2-RB(config-if)#ip address 172.16.24.1 255.255.255.0
+2-R1762-2-RB(config-if)#exit
+2-R1762-2-RB(config)#in loopback 0
+2-R1762-2-RB(config-if)#
+%LINE PROTOCOL CHANGE: Interface Loopback 0, changed state to UP
+2-R1762-2-RB(config-if)#ip address 172.16.20.1 255.255.255.0
+2-R1762-2-RB(config-if)#end
+2-R1762-2-RB#show ip route
+
+Codes:  C - connected, S - static,  R - RIP
+        O - OSPF, IA - OSPF inter area
+        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+        E1 - OSPF external type 1, E2 - OSPF external type 2
+        * - candidate default
+
+Gateway of last resort is no set
+C    172.16.20.0/24 is directly connected, Loopback 0
+C    172.16.20.1/32 is local host.
+C    172.16.23.0/24 is directly connected, FastEthernet 1/0
+C    172.16.23.1/32 is local host.
+C    172.16.24.0/24 is directly connected, FastEthernet 1/1
+C    172.16.24.1/32 is local host.
+
+2-R1762-2-RB#con ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+2-R1762-2-RB(config)#router rip
+2-R1762-2-RB(config-router)#network 172.16.23.0
+2-R1762-2-RB(config-router)#network 172.16.24.0
+2-R1762-2-RB(config-router)#network 172.16.13.0
+2-R1762-2-RB(config-router)#network 172.16.14.0
+2-R1762-2-RB(config-router)#version 2
+2-R1762-2-RB(config-router)#no auto-summary
+2-R1762-2-RB(config-router)#end
+2-R1762-2-RB#show ip route
+
+Codes:  C - connected, S - static,  R - RIP
+        O - OSPF, IA - OSPF inter area
+        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+        E1 - OSPF external type 1, E2 - OSPF external type 2
+        * - candidate default
+
+Gateway of last resort is no set
+R    172.16.10.0/24 [120/2] via 172.16.23.2, 00:00:10, FastEthernet 1/0
+R    172.16.13.0/24 [120/1] via 172.16.23.2, 00:00:10, FastEthernet 1/0
+R    172.16.14.0/24 [120/1] via 172.16.24.2, 00:00:01, FastEthernet 1/1
+C    172.16.20.0/24 is directly connected, Loopback 0
+C    172.16.20.1/32 is local host.
+C    172.16.23.0/24 is directly connected, FastEthernet 1/0
+C    172.16.23.1/32 is local host.
+C    172.16.24.0/24 is directly connected, FastEthernet 1/1
+C    172.16.24.1/32 is local host.
+R    172.16.34.0/24 [120/1] via 172.16.23.2, 00:00:10, FastEthernet 1/0
+2-R1762-2-RB#ping 172.16.13.1
+Sending 5, 100-byte ICMP Echoes to 172.16.13.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+2-R1762-2-RB#ping 172.16.14.1
+Sending 5, 100-byte ICMP Echoes to 172.16.14.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+2-R1762-2-RB#con ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+2-R1762-2-RB(config)#interface fa 1/1
+2-R1762-2-RB(config-if)#exit
+2-R1762-2-RB(config)#interface fa 1/0
+2-R1762-2-RB(config-if)#shutdown
+2-R1762-2-RB(config-if)#
+%LINK CHANGED: Interface FastEthernet 1/0, changed state to administratively dow
+n
+%LINE PROTOCOL CHANGE: Interface FastEthernet 1/0, changed state to DOWN
+2-R1762-2-RB(config-if)#end
+2-R1762-2-RB#show ip route
+
+Codes:  C - connected, S - static,  R - RIP
+        O - OSPF, IA - OSPF inter area
+        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+        E1 - OSPF external type 1, E2 - OSPF external type 2
+        * - candidate default
+
+Gateway of last resort is no set
+R    172.16.14.0/24 [120/1] via 172.16.24.2, 00:00:31, FastEthernet 1/1
+C    172.16.20.0/24 is directly connected, Loopback 0
+C    172.16.20.1/32 is local host.
+C    172.16.24.0/24 is directly connected, FastEthernet 1/1
+C    172.16.24.1/32 is local host.
+
+2-R1762-2-RB#ping 172.16.10.1
+Sending 5, 100-byte ICMP Echoes to 172.16.10.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+2-R1762-2-RB#ping 172.16.20.1
+Sending 5, 100-byte ICMP Echoes to 172.16.20.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+2-R1762-2-RB#show run
+
+Building configuration...
+Current configuration : 677 bytes
+
+!
+version 8.32(building 53)
+hostname 2-R1762-2-RB
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface serial 1/2
+!
+interface serial 1/3
+ clock rate 64000
+!
+interface serial 2/0
+ clock rate 64000
+!
+
+2-R1762-2-RB#show ip rip database
+172.16.0.0/16    auto-summary
+172.16.10.0/24    redistributed
+    [2] via 172.16.23.2, 00:00:04, FastEthernet 1/0
+172.16.13.0/24    redistributed
+    [1] via 172.16.23.2, 00:00:04, FastEthernet 1/0
+172.16.14.0/24    redistributed
+    [1] via 172.16.24.2, 00:00:04, FastEthernet 1/1
+172.16.20.0/24    directly connected, Loopback 0
+172.16.23.0/24    directly connected, FastEthernet 1/0
+172.16.24.0/24    directly connected, FastEthernet 1/1
+172.16.34.0/24    redistributed
+    [1] via 172.16.24.2, 00:00:04, FastEthernet 1/1
+
+2-R1762-2-RB#trace 172.16.10.1
+  < press Ctrl+C to break >
+Tracing the route to 172.16.10.1
+
+ 1      172.16.23.2     0 msec  0 msec  0 msec
+ 2      172.16.10.1     0 msec  0 msec  0 msec
+2-R1762-2-RB#trace 172.16.20.1
+  < press Ctrl+C to break >
+Tracing the route to 172.16.20.1
+
+ 1      172.16.20.1     0 msec  0 msec  0 msec
+

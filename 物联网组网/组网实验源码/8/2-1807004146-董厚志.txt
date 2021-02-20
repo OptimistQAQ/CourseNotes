@@ -1,0 +1,252 @@
+2-H2-S3550-2#ping 172.16.1.5
+Sending 5, 100-byte ICMP Echos to 172.16.1.5, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+2-H2-S3550-2#ping 172.16.1.2
+Sending 5, 100-byte ICMP Echos to 172.16.1.2, 
+timeout is 2000 milliseconds.
+!!!!!
+                                                                              
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 1ms, Average = 1ms
+
+
+
+2-H2-S3550-2#show spanning-tree mst 1 in fa 0/1
+
+                                                                              
+###### MST 1 vlans mapped : 10,30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100100D0F8B886F6
+PortDesignatedCost : 190000
+PortDesignatedBridge : 800100D0F8B88D26
+PortDesignatedPort : 8001
+PortForwardTransitions : 2
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+2-H2-S3550-2#show spanning-tree mst 1 in fa 0/2
+
+                                                                              
+###### MST 1 vlans mapped : 10,30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100100D0F8B886F6
+PortDesignatedCost : 190000
+PortDesignatedBridge : 800100D0F8B88D26
+PortDesignatedPort : 8002
+PortForwardTransitions : 1
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+
+2-H2-S3550-2#show spanning-tree mst 1 in fa 0/3
+
+                                                                              
+###### MST 1 vlans mapped : 10,30
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 800100D0F8B88D26
+PortDesignatedCost : 0
+PortDesignatedBridge : 800100D0F8B88D26
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 0
+PortRole : disabledPort
+
+
+2-H2-S3550-2#show spanning-tree mst 1 in fa 0/4
+
+                                                                              
+###### MST 1 vlans mapped : 10,30
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100100D0F8B886F6
+PortDesignatedCost : 190000
+PortDesignatedBridge : 800100D0F8B88D26
+PortDesignatedPort : 8004
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+
+2-H2-S3550-2#show spanning-tree mst 2 in fa 0/1
+
+                                                                              
+###### MST 2 vlans mapped : 20,40
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100200D0F8B88D26
+PortDesignatedCost : 0
+PortDesignatedBridge : 100200D0F8B88D26
+PortDesignatedPort : 8001
+PortForwardTransitions : 1
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+2-H2-S3550-2#show spanning-tree mst 2 in fa 0/2
+
+                                                                              
+###### MST 2 vlans mapped : 20,40
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100200D0F8B88D26
+PortDesignatedCost : 0
+PortDesignatedBridge : 100200D0F8B88D26
+PortDesignatedPort : 8002
+PortForwardTransitions : 1
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+2-H2-S3550-2#show spanning-tree mst 2 in fa 0/3
+
+                                                                              
+###### MST 2 vlans mapped : 20,40
+PortState : discarding
+PortPriority : 128
+PortDesignatedRoot : 800200D0F8B88D26
+PortDesignatedCost : 0
+PortDesignatedBridge : 800200D0F8B88D26
+PortDesignatedPort : 0000
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 0
+PortRole : disabledPort
+
+2-H2-S3550-2#show spanning-tree mst 2 in fa 0/4
+
+                                                                              
+###### MST 2 vlans mapped : 20,40
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 100200D0F8B88D26
+PortDesignatedCost : 0
+PortDesignatedBridge : 100200D0F8B88D26
+PortDesignatedPort : 8004
+PortForwardTransitions : 0
+PortAdminPathCost : 0
+PortOperPathCost : 200000
+PortRole : designatedPort
+
+
+2-H2-S3550-2#show standby       
+                                                                              
+If      Group State  Priority Preempt Interval Virtual IP      Auth
+------- ----- ------ -------- ------- -------- --------------- --------
+VL10    10    backup 100      may     1        172.16.10.254           
+VL20    20    master 200      may     1        172.16.20.254           
+VL30    30    backup 100      may     1        172.16.30.254           
+VL40    40    master 200      may     1        172.16.40.254           
+
+
+
+2-H2-S3550-2#sh run
+
+System software version : 2.41(4) Build Nov 23 2005 Release
+
+Building configuration...
+Current configuration : 1433 bytes
+
+!
+version 1.0
+!
+hostname 2-H2-S3550-2
+vlan 1
+!
+vlan 10
+!
+vlan 20
+!
+vlan 30
+!
+vlan 40
+!
+  spanning-tree 
+  spanning-tree mst configuration 
+  instance 1 vlan 10,30
+  instance 2 vlan 20,40
+  name 2  
+  revision 1  
+!        
+  spanning-tree mst 2 priority 4096  
+interface AggregatePort 1
+ switchport mode trunk
+!
+interface FastEthernet 0/1
+ switchport mode trunk
+!
+interface FastEthernet 0/2
+ switchport mode trunk
+!
+interface FastEthernet 0/4
+ no switchport
+ ip address 172.16.1.6 255.255.255.252 
+!
+interface FastEthernet 0/5
+ port-group 1 
+ switchport mode trunk
+!
+interface FastEthernet 0/6
+ port-group 1 
+ switchport mode trunk
+!
+interface Vlan 10
+ ip address 172.16.10.2 255.255.255.0 
+    standby 10 ip 172.16.10.254
+!
+interface Vlan 20
+ ip address 172.16.20.2 255.255.255.0 
+    standby 20 ip 172.16.20.254
+    standby 20 priority 200
+!
+interface Vlan 30
+ ip address 172.16.30.2 255.255.255.0 
+    standby 30 ip 172.16.30.254
+!
+interface Vlan 40
+ ip address 172.16.40.2 255.255.255.0 
+    standby 40 ip 172.16.40.254
+    standby 40 priority 200
+!
+router ospf
+area 0.0.0.0
+network 172.16.1.4 255.255.255.252 area 0.0.0.0
+network 172.16.10.0 255.255.255.0 area 0.0.0.0
+network 172.16.20.0 255.255.255.0 area 0.0.0.0
+network 172.16.30.0 255.255.255.0 area 0.0.0.0
+network 172.16.40.0 255.255.255.0 area 0.0.0.0
+!
+ip route 0.0.0.0 0.0.0.0 202.100.1.1 1 enabled
+end
+
+
+
+2-H2-S3550-2#sh ip rou
+                                                                              
+Type:  C - connected, S - static, R - RIP, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+
+Type Destination IP     Next hop        Interface Distance Metric   Status
+---- ------------------ --------------- --------- -------- -------- --------
+S    0.0.0.0/0          202.100.1.1     none      1        0        Inactive
+O    172.16.1.0/30      172.16.1.5      Fa0/4     110      2        Active
+C    172.16.1.4/30      0.0.0.0         Fa0/4     0        0        Active
+C    172.16.10.0/24     0.0.0.0         VL10      0        0        Active
+C    172.16.20.0/24     0.0.0.0         VL20      0        0        Active
+C    172.16.30.0/24     0.0.0.0         VL30      0        0        Active
+C    172.16.40.0/24     0.0.0.0         VL40      0        0        Active
+O    202.100.1.1/32     172.16.1.5      Fa0/4     110      2        Active
+
+

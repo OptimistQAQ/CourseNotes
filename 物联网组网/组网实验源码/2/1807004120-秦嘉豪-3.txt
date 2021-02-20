@@ -1,0 +1,162 @@
+S2126#sh vl
+VLAN Name                             Status    Ports     
+---- -------------------------------- --------- -----------------------------------
+   1 VLAN0001                         STATIC    Fa0/6, Fa0/7, Fa0/8, Fa0/9            
+                                                Fa0/10, Fa0/11, Fa0/12, Fa0/13        
+                                                Fa0/14, Fa0/15, Fa0/16, Fa0/17        
+                                                Fa0/18, Fa0/19, Fa0/20, Fa0/21        
+                                                Fa0/22, Fa0/23, Fa0/24, Gi0/25        
+                                                Gi0/26, Ag1                           
+  10 test10                           STATIC    Fa0/1, Ag1                            
+  20 technical                        STATIC    Fa0/2, Ag1                            
+
+
+
+
+2126#sh vl
+VLAN Name                             Status    Ports     
+---- -------------------------------- --------- -----------------------------------
+   1 VLAN0001                         STATIC    Fa0/6, Fa0/7, Fa0/8, Fa0/9            
+                                                Fa0/10, Fa0/11, Fa0/12, Fa0/13        
+                                                Fa0/14, Fa0/15, Fa0/16, Fa0/17        
+                                                Fa0/18, Fa0/19, Fa0/20, Fa0/21        
+                                                Fa0/22, Fa0/23, Fa0/24, Gi0/25        
+                                                Gi0/26, Ag1                           
+  10 test10                           STATIC    Fa0/1, Ag1                            
+  20 technical                        STATIC    Fa0/2, Ag1                            
+S2126#sh run
+
+Building configuration...
+Current configuration : 1297 bytes
+
+!
+version RGOS 10.2(5p1), Release(122585)(Wed Aug 24 11:37:41 CST 2011 -ngcf67)
+!
+!
+!
+vlan 1
+!
+vlan 10
+ name test10
+!
+vlan 20
+ name technical
+!
+!
+no service password-encryption
+!
+!
+!
+!
+!
+!         
+!         
+hostname S2126
+interface FastEthernet 0/1
+ switchport access vlan 10
+!         
+interface FastEthernet 0/2
+ switchport access vlan 20
+!         
+interface FastEthernet 0/3
+ port-group 1
+!         
+interface FastEthernet 0/4
+ port-group 1
+!         
+interface FastEthernet 0/5
+ port-group 1
+!         
+interface FastEthernet 0/6
+!         
+interface FastEthernet 0/7
+!         
+interface FastEthernet 0/8
+!         
+interface FastEthernet 0/9
+!         
+interface FastEthernet 0/10
+!         
+interface FastEthernet 0/11
+!         
+interface FastEthernet 0/12
+!         
+interface FastEthernet 0/13
+!         
+interface FastEthernet 0/14
+!         
+interface FastEthernet 0/15
+!         
+interface FastEthernet 0/16
+!         
+interface FastEthernet 0/17
+!         
+interface FastEthernet 0/18
+!         
+interface FastEthernet 0/19
+!         
+interface FastEthernet 0/20
+!         
+interface FastEthernet 0/21
+!         
+interface FastEthernet 0/22
+!         
+interface FastEthernet 0/23
+!         
+interface FastEthernet 0/24
+!         
+interface GigabitEthernet 0/25
+!         
+interface GigabitEthernet 0/26
+!         
+interface AggregatePort 1
+ switchport mode trunk
+!         
+interface VLAN 10
+ no shutdown
+!         
+!         
+line con 0
+line vty 0 4
+ login    
+!         
+!        
+   
+
+
+      
+S2126#sh ag 1 su
+AggregatePort MaxPorts SwitchPort Mode   Ports                             
+------------- -------- ---------- ------ ----------------------------------
+Ag1           8        Enabled    TRUNK  Fa0/3   ,Fa0/4   ,Fa0/5   
+S2126#   
+
+
+
+S2126#sh in ag 1 sw
+Interface                Switchport Mode      Access Native Protected VLAN lists
+------------------------ ---------- --------- ------ ------ --------- ----------
+AggregatePort 1          enabled    TRUNK     1      1      Disabled  ALL
+S2126#    
+
+
+
+
+S2126#sh ip in
+VLAN 10
+  IP interface state is: DOWN
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-broadcast is: OFF
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: OFF
+
+

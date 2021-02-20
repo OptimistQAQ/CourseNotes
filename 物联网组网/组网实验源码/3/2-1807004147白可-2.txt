@@ -1,0 +1,70 @@
+SwitchB#show spanning-tree
+StpVersion : RSTP
+SysStpStatus : ENABLED
+MaxAge : 20
+HelloTime : 2
+ForwardDelay : 15
+BridgeMaxAge : 20
+BridgeHelloTime : 2
+BridgeForwardDelay : 15
+MaxHops: 20
+TxHoldCount : 3
+PathCostMethod : Long
+BPDUGuard : Disabled
+BPDUFilter : Disabled
+LoopGuardDef  : Disabled
+BridgeAddr : 001a.a917.2cbc
+Priority: 32768
+TimeSinceTopologyChange : 0d:0h:13m:46s
+TopologyChanges : 18
+DesignatedRoot : 0000.00d0.f8b8.86f6
+RootCost : 200000
+RootPort : 2
+SwitchB#show spanning-tree interface
+% Incomplete command.
+
+SwitchB#show spanning-tree interface fa0/1
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Enabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Enabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 0000.00d0.f8b8.86f6
+PortDesignatedCost : 200000
+PortDesignatedBridge :8000.001a.a917.2cbc
+PortDesignatedPort : 8001
+PortForwardTransitions : 28
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : designatedPort
+SwitchB#show spanning-tree interface fa0/2
+
+PortAdminPortFast : Disabled
+PortOperPortFast : Disabled
+PortAdminAutoEdge : Enabled
+PortOperAutoEdge : Disabled
+PortAdminLinkType : auto
+PortOperLinkType : point-to-point
+PortBPDUGuard : Disabled
+PortBPDUFilter : Disabled
+PortGuardmode  : None
+PortState : forwarding
+PortPriority : 128
+PortDesignatedRoot : 0000.00d0.f8b8.86f6
+PortDesignatedCost : 0
+PortDesignatedBridge :0000.00d0.f8b8.86f6
+PortDesignatedPort : 8004
+PortForwardTransitions : 3
+PortAdminPathCost : 200000
+PortOperPathCost : 200000
+Inconsistent states : normal
+PortRole : rootPort
+SwitchB#

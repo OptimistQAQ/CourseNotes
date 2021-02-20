@@ -1,0 +1,102 @@
+//路由器
+
+[Message : Hello, welcome to use LIMP Telnet Proxy.Prepare connecting to the dev
+ice, please wait a moment....]
+
+[Message : Connection is established.Device is R1762-3]
+
+Red-Giant>
+Red-Giant>en
+Red-Giant#con te
+Enter configuration commands, one per line.  End with CNTL/Z.
+Red-Giant(config)#hostname R3
+R3(config)#line vty 0 4
+R3(config-line)#login
+R3(config-line)#password star
+[Message : Command is forbidden]
+
+R3#en
+R3#con te
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#enable password 0 star
+[Message : Command is forbidden]
+
+R3#con te
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#in serial 1/2
+R3(config-if)#ip address 172.16.23.1 255.255.255.0
+R3(config-if)#no sh
+R3(config-if)#in fa 1/0
+R3(config-if)#ip address 172.16.3.1 255.255.255.0
+R3(config-if)#no sh
+R3(config-if)#en
+R3#con te
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#in serial 1/2
+R3(config-if)#clock rate 64000
+R3(config-if)#en
+R3#show in serial 1/2
+serial 1/2 is UP  , line protocol is UP
+Hardware is PQ2 SCC HDLC CONTROLLER serial
+Interface address is: 172.16.23.1/24
+  MTU 1500 bytes, BW 2000 Kbit
+  Encapsulation protocol is HDLC, loopback not set
+  Keepalive interval is 10 sec , set
+  Carrier delay is 2 sec
+  RXload is 1 ,Txload is 1
+  Queueing strategy: WFQ
+  5 minutes input rate 17 bits/sec, 0 packets/sec
+  5 minutes output rate 17 bits/sec, 0 packets/sec
+    374 packets input, 8228 bytes, 0 no buffer
+    Received 374 broadcasts, 0 runts, 0 giants
+    0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+    374 packets output, 8228 bytes, 0 underruns
+    0 output errors, 0 collisions, 2 interface resets
+    1 carrier transitions
+    V35 DCE cable
+    DCD=up  DSR=up  DTR=up  RTS=up  CTS=up
+R3#
+R3#ping 172.16.23.2
+Sending 5, 100-byte ICMP Echoes to 172.16.23.2, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/37 ms
+R3#
+//交换机
+Switch#show running
+
+System software version : 2.41(4) Build Nov 23 2005 Release
+
+Building configuration...
+Current configuration : 170 bytes
+
+!
+version 1.0
+!
+hostname Switch
+vlan 1
+!
+interface Vlan 1
+ ip address 172.16.3.100 255.255.255.0
+!
+ip route 0.0.0.0 0.0.0.0 Vlan 1 172.16.3.1 1 enabled
+end
+
+Switch#
+Switch#ping 172.16.3.1
+Sending 5, 100-byte ICMP Echos to 172.16.3.1,
+timeout is 2000 milliseconds.
+!!!!!
+
+Success rate is 100 percent (5/5)
+Minimum = 1ms Maximum = 3ms, Average = 1ms
+
+Switch#
+Switch#ping 172.16.4.100
+Sending 5, 100-byte ICMP Echos to 172.16.4.100,
+timeout is 2000 milliseconds.
+.....
+
+Success rate is 0 percent (0/5)
+
+Switch#

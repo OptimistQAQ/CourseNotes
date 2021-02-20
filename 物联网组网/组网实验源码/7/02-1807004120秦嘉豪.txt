@@ -1,0 +1,420 @@
+任务一：
+R1762-2#con te
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1762-2(config)#in fa 1/1
+R1762-2(config-if)#ip ad 172.16.21.1 255.255.255.0
+R1762-2(config-if)#no shutdown
+R1762-2(config-if)#end
+R1762-2#sh ip in
+serial 1/2
+  IP interface state is: UP
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    172.16.1.2/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+serial 1/3
+  IP interface state is: DOWN
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+serial 2/0
+  IP interface state is: DOWN
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+serial 2/1
+  IP interface state is: DOWN
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+FastEthernet 1/0
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is: 
+    172.16.20.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+FastEthernet 1/1
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is: 
+    172.16.21.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+Null 0
+  IP interface state is: UP
+  IP interface type is: NULL
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+
+
+
+R1762-2#ping 172.16.10.100
+Sending 5, 100-byte ICMP Echoes to 172.16.10.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 38/38/39 ms
+R1762-2#ping 172.16.11.100
+Sending 5, 100-byte ICMP Echoes to 172.16.11.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 39/39/39 ms
+R1762-2#ping 172.16.20.100
+Sending 5, 100-byte ICMP Echoes to 172.16.20.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R1762-2#ping 172.16.21.100
+Sending 5, 100-byte ICMP Echoes to 172.16.21.100, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R1762-2#ping 172.16.10.1
+Sending 5, 100-byte ICMP Echoes to 172.16.10.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 37/37/37 ms
+R1762-2#
+
+
+
+
+R1762-2#show ip access-lists
+Standard IP access list 10 includes 3 items:
+    permit 172.16.11.0, wildcard bits 0.0.0.255
+    permit host 172.16.20.100
+    deny   any
+R1762-2#show access-lists
+Standard IP access list 10 includes 3 items:
+    permit 172.16.11.0, wildcard bits 0.0.0.255
+    permit host 172.16.20.100
+    deny   any
+R1762-2#
+
+
+
+R1762-2#show ip in fa 1/1
+FastEthernet 1/1
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is: 
+    172.16.21.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+
+
+
+R1762-2#ping 172.16.10.10
+Sending 5, 100-byte ICMP Echoes to 172.16.10.10, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 38/38/39 ms
+R1762-2#ping 172.16.20.10
+Sending 5, 100-byte ICMP Echoes to 172.16.20.10, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R1762-2#
+
+
+
+
+任务2
+////////////////////////
+R2762#con te
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2762(config)#in se 1/2
+R2762(config-if)#ip ad 172.17.0.02 255.255.255.0
+R2762(config-if)#no shutdown
+R2762(config-if)#end
+R2762#sh ip in
+serial 1/2
+  IP interface state is: UP
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    172.17.0.2/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+serial 1/3
+  IP interface state is: DOWN
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+serial 2/0
+  IP interface state is: DOWN
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+serial 2/1
+  IP interface state is: DOWN
+  IP interface type is: POINTOPOINT
+  IP interface MTU is: 1500
+  IP address is: 
+    No address configured
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+FastEthernet 1/0
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is: 
+    172.17.10.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is not set.
+  Inbound access list is not set.
+
+FastEthernet 1/1
+  IP interface state is: UP
+  IP interface type is: BROADCAST
+  IP interface MTU is: 1500
+  IP address is: 
+    172.17.20.1/24 (primary)
+  IP address negotiate is: OFF
+  Forward direct-boardcast is: ON
+  ICMP mask reply is: ON
+  Send ICMP redirect is: ON
+  Send ICMP unreachabled is: ON
+  DHCP relay is: OFF
+  Fast switch is: ON
+  Route horizontal-split is: ON
+  Help address is: 0.0.0.0
+  Proxy ARP is: ON
+  Outgoing access list is 10.
+  Inbound access list is not set.
+
+
+
+R2762#show access
+Standard IP access list 10 includes 3 items (total 40 matches):
+    permit 172.16.11.0, wildcard bits 0.0.0.255 (15 matches)
+    permit host 172.16.20.100
+    deny   any (25 matches)
+Extended IP access list 110 includes 3 items:
+    deny   icmp 172.17.20.0 0.0.0.255 172.17.10.0 0.0.0.255
+    permit icmp 172.17.20.0 0.0.0.255 172.17.10.0 0.0.0.255
+    deny   ip any any
+R2762#show ip access
+Standard IP access list 10 includes 3 items (total 40 matches):
+    permit 172.16.11.0, wildcard bits 0.0.0.255 (15 matches)
+    permit host 172.16.20.100
+    deny   any (25 matches)
+Extended IP access list 110 includes 3 items:
+    deny   icmp 172.17.20.0 0.0.0.255 172.17.10.0 0.0.0.255
+    permit icmp 172.17.20.0 0.0.0.255 172.17.10.0 0.0.0.255
+    deny   ip any any
+R2762#
+
+
+
+任务三：
+S3550-1#sh ip in
+                                                                              
+Interface            : VL1
+Description          : Vlan 1
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.17.20.100/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d6
+
+Interface            : VL10
+Description          : Vlan 10
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.10.1/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d7
+
+Interface            : VL20
+Description          : Vlan 20
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.20.1/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d8
+         
+Interface            : VL30
+Description          : Vlan 30
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.30.1/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d9
+
+Standard IP access list: my_acl
+    permit host 172.16.20.100
+    permit 172.16.30.0 0.0.0.255
+
+S3550-1#sh ip access-group
+                                                                              
+Interface  inbound access-list              outbound access-list
+---------- -------------------------------- --------------------------------
+VL10                                        my_acl
+
+
+

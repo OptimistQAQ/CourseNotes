@@ -1,0 +1,119 @@
+Switch#sh vl
+                                                                              
+VLAN Name                             Status    Ports                  
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1 ,Fa0/3 ,Fa0/5 ,Fa0/6 
+                                                Fa0/7 ,Fa0/8 ,Fa0/9 ,Fa0/10
+                                                Fa0/11,Fa0/12,Fa0/13,Fa0/14
+                                                Fa0/15,Fa0/16,Fa0/17,Fa0/18
+                                                Fa0/19,Fa0/20,Fa0/21,Fa0/22
+                                                Fa0/23,Fa0/24
+                                                Ag1   
+10   sales                            active    Fa0/3 ,Fa0/4 ,Fa0/5 
+                                                Ag1   
+11   test11                           active    Fa0/3 ,Fa0/5 
+                                                Ag1   
+20   technical                        active    Fa0/2 ,Fa0/3 ,Fa0/5 
+                                                Ag1   
+
+
+
+
+
+Switch#sh run
+
+System software version : 2.41(4) Build Nov 23 2005 Release
+
+Building configuration...
+Current configuration : 604 bytes
+
+!
+version 1.0
+!
+hostname Switch
+vlan 1
+!
+vlan 10
+ name sales
+!
+vlan 11
+ name test11
+!
+vlan 20
+ name technical
+!
+interface AggregatePort 1
+ switchport mode trunk
+!
+interface FastEthernet 0/2
+ switchport access vlan 20
+!        
+interface FastEthernet 0/3
+ port-group 1 
+ switchport mode trunk
+ switchport access vlan 10
+!        
+interface FastEthernet 0/4
+ switchport access vlan 10
+!        
+interface FastEthernet 0/5
+ port-group 1 
+ switchport mode trunk
+!        
+interface Vlan 10
+ ip address 172.16.10.254 255.255.255.0 
+!        
+interface Vlan 20
+ ip address 172.16.20.254 255.255.255.0 
+!        
+end
+
+
+
+Switch#sh agg 1 su
+AggregatePort MaxPorts SwitchPort Mode   Ports                                
+------------- -------- ---------- ------ ----------------------- 
+Ag1           8        Enabled    Trunk  Fa0/3 , Fa0/5          
+
+
+
+Switch#sh in agg 1 sw
+Interface  Switchport Mode      Access  Native   Protected VLAN lists         
+---------- ---------- --------- ------- -------- --------- ---------------------
+Ag1        Enabled    Trunk     1       1        Disabled  All
+
+
+
+
+Switch#sh ip route
+                                                                              
+Type:  C - connected, S - static, R - RIP, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+
+Type Destination IP     Next hop        Interface Distance Metric   Status
+---- ------------------ --------------- --------- -------- -------- --------
+C    172.16.10.0/24     0.0.0.0         VL10      0        0        Active
+C    172.16.20.0/24     0.0.0.0         VL20      0        0        Active
+
+
+
+
+
+Switch#sh ip in
+                                                                              
+Interface            : VL10
+Description          : Vlan 10
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.10.254/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d6
+
+Interface            : VL20
+Description          : Vlan 20
+OperStatus           : up
+ManagementStatus     : Enabled
+Primary Internet address: 172.16.20.254/24 
+Broadcast address    : 255.255.255.255
+PhysAddress          : 00d0.f8b8.86d7
