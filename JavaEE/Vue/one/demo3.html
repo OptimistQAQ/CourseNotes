@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--View层-->
+<div id="app">
+
+    <qinfeng v-for="item in items" v-bind:qin="item"></qinfeng>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    //定义一个Vue组件component
+    Vue.component("qinfeng", {
+        props: ['qin'],
+        template: '<li>{{qin}}</li>'
+    });
+
+    var vm = new Vue({
+        el: "#app",
+        //model: 数据
+        data: {
+            items: ["Java", "Linux", "Deep Learning"]
+        }
+    });
+</script>
+
+
+</body>
+</html>

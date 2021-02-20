@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--View层-->
+<div id="app">
+<!--    输入的文本：<textarea v-model="message"> </textarea> {{message}}-->
+<!--    sex:-->
+<!--    <input type="radio" name="sex" value="男" v-model="qinfeng"> man-->
+<!--    <input type="radio" name="sex" value="女" v-model="qinfeng"> woman-->
+
+<!--    <p>-->
+<!--        选中了谁： {{qinfeng}}-->
+<!--    </p>-->
+
+    下拉菜单:
+    <select v-model="selected">
+        <option value="" disabled>--请选择--</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+
+    <span>Value: {{selected}}</span>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        //model: 数据
+        data: {
+            message: "",
+            selected: ""
+        }
+    });
+</script>
+
+</body>
+</html>

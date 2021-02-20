@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="vue" v-cloak>
+    <div>
+        {{info.name}}
+        {{info.address.country + info.address.city + info.address.street}}
+
+        <a v-bind:href="info.url">点击</a>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#vue',
+            data() {
+                return{
+                    //请求返回的参数格式，必须跟Json字符串一样
+                    info:{
+                            name: null,
+                            url: null,
+                        address: {
+                            street: null,
+                            city: null,
+                            country: null
+                        }
+                    }
+                }
+            },
+            mounted() {  //钩子函数 链式编程  =>ES6的新特性
+                axios.get('data.json').then(response=>(this.info=response.data));
+            }
+        });
+    </script>
+
+</body>
+</html>

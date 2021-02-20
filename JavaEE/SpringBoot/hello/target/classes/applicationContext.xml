@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    使用spring来创建我们的对象，在spring这些都成为bean-->
+    <bean id="hello" class="com.optimist.dao.Hello">
+        <property name="hello" value="Spring"/>
+    </bean>
+
+    <!--    id: 当前bean的唯一标识符
+            class：定位到具体的Impl.java文件
+    -->
+    <bean id="test" class="com.optimist.dao.TestDaoImp"/>
+
+    <bean id="mysqlImpl" class="com.optimist.dao.UserDaoMysqlImpl"/>
+
+</beans>

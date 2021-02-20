@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="javax.annotation">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.annotation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.ejb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.jms.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.persistence.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.resource.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.servlet.jsp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.servlet.jsp.jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ch2_3/web/WEB-INF/libs/javax.transaction.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

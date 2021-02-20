@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<!--View层-->
+<div id="app">
+    <span v-bind:title="message">
+        鼠标悬停可查看状态信息
+    </span>
+    <button v-on:click="sayHi">Click Me</button>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        //model: 数据
+        data: {
+            message: "Hello, HuoXin"
+        },
+        methods: { //方法必须定义在Vue的methods对象中,  时间v-on需要监听
+            sayHi: function (event) {
+                alert(this.message);
+            }
+        }
+    });
+</script>
+</body>
+</html>

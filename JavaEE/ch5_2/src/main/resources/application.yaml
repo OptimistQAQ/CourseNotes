@@ -1,0 +1,36 @@
+
+# 对空格要求较高
+# 可以注入到page中
+
+#server:
+#  port: 8080
+#
+## 对象
+#student:
+#  name: qinjiahao
+#  age: 20
+
+# yaml可以直接给实体类赋值
+person:
+  name: qinjiahao
+  age: 20
+  happy: false
+  birth: 2000/06/07
+  map: {k1: v1, k2: v2}
+  lists:
+    - code
+    - music
+    - girl
+  dog:
+    name: ${person.hello:hello}_旺财
+    age: 3
+
+spring:
+  thymeleaf:
+    cache: false
+#server:
+#  servlet:
+#    context-path: /ch5_2
+
+
+

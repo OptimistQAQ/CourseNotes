@@ -1,0 +1,21 @@
+{
+  "name": "秦风",
+  "url": "https://optimistqaq.github.io",
+  "page": 1,
+  "isNonProfig": true,
+  "address": {
+    "street": "古韩街",
+    "city": "山西长治",
+    "country": "China"
+  },
+  "links": [
+    {
+      "name": "bilibili",
+      "url": "https://space.bilibili.com/428252987"
+    },
+    {
+      "name": "百度",
+      "url": "https://www.baidu.com"
+    }
+  ]
+}
